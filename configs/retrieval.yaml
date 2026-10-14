@@ -6,7 +6,8 @@ tokenizer: cl100k_base
 encoder:
   model: Qwen/Qwen3-Embedding-0.6B   # 1024-d, 32K context; replaces bge-base (decision 2026-10-14)
   dtype: fp16
-  batch_size: 32
+  batch_size: 128                    # max texts per batch; the token budget below is the real limit
+  max_tokens_per_batch: 16384        # padded tokens per batch; sized for the 1g.5gb GPU slice (OOM on 32×2048)
   max_seq_length: 2048               # turns longer than this are truncated by the model tokenizer
   query_prefix: "Instruct: Given a question about a user's past conversations, retrieve the conversation turns that contain the answer\nQuery:"
 bm25:
