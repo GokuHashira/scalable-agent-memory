@@ -5,9 +5,11 @@ export SCRATCH_ROOT=/home/gsakthiv/scratch.cmsc848n
 _SELF="${BASH_SOURCE[0]:-$0}"  # bash: BASH_SOURCE; zsh: $0 is the sourced file
 REPO_DIR=$(git -C "$(dirname "${_SELF}")" rev-parse --show-toplevel 2>/dev/null) || REPO_DIR=$(pwd -P)
 REPO_DIR=$(cd "${REPO_DIR}" && pwd -P)
+# SCRATCH_ROOT is a symlink (to /scratch/zt1/project/cmsc848n/user/gsakthiv); compare physical paths.
+SCRATCH_REAL=$(cd "${SCRATCH_ROOT}" 2>/dev/null && pwd -P) || SCRATCH_REAL="${SCRATCH_ROOT}"
 case "${REPO_DIR}/" in
-  "${SCRATCH_ROOT}"/*) ;;
-  *) echo "zaratan_env.sh: repo ${REPO_DIR} is outside ${SCRATCH_ROOT}; refusing to run" >&2; return 1 2>/dev/null || exit 1 ;;
+  "${SCRATCH_REAL}"/* | "${SCRATCH_ROOT}"/*) ;;
+  *) echo "zaratan_env.sh: repo ${REPO_DIR} is outside ${SCRATCH_ROOT} (${SCRATCH_REAL}); refusing to run" >&2; return 1 2>/dev/null || exit 1 ;;
 esac
 export REPO_DIR
 CACHE="${SCRATCH_ROOT}/.cache"
