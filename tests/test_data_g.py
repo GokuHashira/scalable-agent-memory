@@ -90,6 +90,48 @@ def test_convert_file_roundtrip(tmp_path):
     raw_path = tmp_path / "raw.json"
     raw_path.write_text(json.dumps(RAW))
     counts = convert_lme_s(raw_path, tmp_path / "out")
-    assert counts == {"questions": 2, "notes": 9, "turn_notes": 6, "abstention": 1, "empty_gold_turns": 1}
+    assert counts == {
+        "questions": 2,
+        "notes": 9,
+        "turn_notes": 6,
+        "abstention": 1,
+        "empty_gold_turns": 1,
+        "duplicate_sessions_dropped": 0,
+        "duplicate_sessions_renamed": 0,
+    }
     assert len(load_notes(tmp_path / "out" / "notes.jsonl")) == 9
     assert [q.question_id for q in load_questions(tmp_path / "out" / "questions.jsonl")] == ["q1", "q2_abs"]
+
+
+def _with_duplicate(identical: bool):
+    raw = copy.deepcopy(RAW)
+    rec = raw[0]
+    dup_turns = copy.deepcopy(rec["haystack_sessions"][1])
+    if not identical:
+        dup_turns[2]["content"] = "something different"
+    rec["haystack_session_ids"].append("sB")
+    rec["haystack_dates"].append("2023/05/22 (Mon) 09:00")
+    rec["haystack_sessions"].append(dup_turns)
+    return raw
+
+
+def test_identical_duplicate_session_is_dropped_and_counted():
+    notes, questions = convert_records(_with_duplicate(identical=True))
+    assert not any("__dup" in n.session_id for n in notes)
+    assert len([n for n in notes if n.history_id == "q1" and not n.is_session_parent]) == 5
+    assert questions[0].gold_session_ids == ["sB"]
+
+
+def test_different_duplicate_session_is_renamed_and_inherits_gold():
+    notes, questions = convert_records(_with_duplicate(identical=False))
+    renamed = [n for n in notes if n.session_id == "sB__dup1"]
+    assert len(renamed) == 4  # parent + 3 turns
+    assert questions[0].gold_session_ids == ["sB", "sB__dup1"]
+    assert questions[0].gold_note_ids == ["q1:sB:0", "q1:sB__dup1:0"]
+
+
+def test_duplicate_counts_reported(tmp_path):
+    raw_path = tmp_path / "raw.json"
+    raw_path.write_text(json.dumps(_with_duplicate(identical=True)))
+    counts = convert_lme_s(raw_path, tmp_path / "out")
+    assert counts["duplicate_sessions_dropped"] == 1 and counts["duplicate_sessions_renamed"] == 0

@@ -54,8 +54,6 @@ def _validate(record: dict[str, Any]) -> None:
             f"{qid}: haystack_dates has {n_dates} entries, haystack_sessions {n_sessions}, "
             f"haystack_session_ids {n_ids}; they must align one per session"
         )
-    if len(set(record["haystack_session_ids"])) != n_ids:
-        raise ConversionError(f"{qid}: duplicate session ids in haystack_session_ids")
     for answer_session in record["answer_session_ids"]:
         if answer_session not in record["haystack_session_ids"]:
             raise ConversionError(f"{qid}: answer session {answer_session!r} not in haystack")
@@ -95,13 +93,35 @@ def _session_notes(qid: str, session_id: str, iso_date: str, turns: list[dict], 
     return [parent, *turn_notes]
 
 
-def convert_record(record: dict[str, Any], parent_tokens: int = 64) -> tuple[list[Note], Question]:
+def _same_turns(a: list[dict], b: list[dict]) -> bool:
+    return [(t["role"], t["content"]) for t in a] == [(t["role"], t["content"]) for t in b]
+
+
+def convert_record(
+    record: dict[str, Any], parent_tokens: int = 64, stats: dict[str, int] | None = None
+) -> tuple[list[Note], Question]:
+    """One history. Real LongMemEval_S repeats some session ids within a haystack: an identical repeat is dropped,
+    a differing one is kept as `<id>__dup<k>` and inherits gold status; both are counted in `stats`."""
     _validate(record)
+    stats = stats if stats is not None else {}
     qid = str(record["question_id"])
     notes: list[Note] = []
     gold_note_ids: list[str] = []
+    extra_gold_sessions: list[str] = []
+    seen: dict[str, list[list[dict]]] = {}
     sessions = zip(record["haystack_session_ids"], record["haystack_dates"], record["haystack_sessions"], strict=True)
-    for session_id, raw_date, turns in sessions:
+    for raw_session_id, raw_date, turns in sessions:
+        session_id = raw_session_id
+        earlier = seen.setdefault(raw_session_id, [])
+        if any(_same_turns(turns, prev) for prev in earlier):
+            stats["duplicate_sessions_dropped"] = stats.get("duplicate_sessions_dropped", 0) + 1
+            continue
+        if earlier:
+            session_id = f"{raw_session_id}__dup{len(earlier)}"
+            stats["duplicate_sessions_renamed"] = stats.get("duplicate_sessions_renamed", 0) + 1
+            if raw_session_id in record["answer_session_ids"]:
+                extra_gold_sessions.append(session_id)
+        earlier.append(turns)
         notes.extend(_session_notes(qid, session_id, _iso(qid, raw_date), turns, parent_tokens))
         gold_note_ids.extend(ids.note_id(qid, session_id, t) for t, turn in enumerate(turns) if turn.get("has_answer"))
     question = Question(
@@ -111,20 +131,22 @@ def convert_record(record: dict[str, Any], parent_tokens: int = 64) -> tuple[lis
         question=str(record["question"]),
         question_date=_iso(qid, record["question_date"]),
         answer=str(record["answer"]),
-        gold_session_ids=list(record["answer_session_ids"]),
+        gold_session_ids=[*record["answer_session_ids"], *extra_gold_sessions],
         gold_note_ids=gold_note_ids,
         split="test",  # placeholder; the frozen dev/test split comes later (data-model.md)
     )
     return notes, question
 
 
-def convert_records(records: list[dict[str, Any]], parent_tokens: int = 64) -> tuple[list[Note], list[Question]]:
+def convert_records(
+    records: list[dict[str, Any]], parent_tokens: int = 64, stats: dict[str, int] | None = None
+) -> tuple[list[Note], list[Question]]:
     """All histories, notes sorted by id; question ids must be unique because each names its own history."""
     seen: set[str] = set()
     notes: list[Note] = []
     questions: list[Question] = []
     for record in records:
-        rec_notes, question = convert_record(record, parent_tokens)
+        rec_notes, question = convert_record(record, parent_tokens, stats)
         if question.question_id in seen:
             raise ConversionError(f"{question.question_id}: duplicate question_id; histories must be unique")
         seen.add(question.question_id)
@@ -142,7 +164,8 @@ def convert_lme_s(raw_path: str | Path, out_dir: str | Path, parent_tokens: int 
             f"{raw_path} not found; download longmemeval_s_cleaned.json from HF xiaowu0162/longmemeval-cleaned"
         )
     records = json.loads(raw_path.read_text(encoding="utf-8"))
-    notes, questions = convert_records(records, parent_tokens)
+    stats = {"duplicate_sessions_dropped": 0, "duplicate_sessions_renamed": 0}
+    notes, questions = convert_records(records, parent_tokens, stats)
     out = Path(out_dir)
     write_jsonl(out / "notes.jsonl", notes)
     write_jsonl(out / "questions.jsonl", questions)
@@ -152,4 +175,5 @@ def convert_lme_s(raw_path: str | Path, out_dir: str | Path, parent_tokens: int 
         "turn_notes": sum(1 for n in notes if not n.is_session_parent),
         "abstention": sum(1 for q in questions if ids.is_abstention(q.question_id)),
         "empty_gold_turns": sum(1 for q in questions if not q.gold_note_ids),
+        **stats,
     }
