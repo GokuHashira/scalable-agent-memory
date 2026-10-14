@@ -7,8 +7,8 @@ from pathlib import Path
 import numpy as np
 
 from mem27.retrieval.base import BaseRetriever, Ranked, SearchResult, StageTimer, rank
-from mem27.retrieval.p0_bm25 import BM25Retriever
-from mem27.retrieval.p1_dense import DenseRetriever
+from mem27.retrieval.bm25 import BM25Retriever
+from mem27.retrieval.dense import DenseRetriever
 from mem27.schema import Note, RetrievalRequest, Summary
 
 
@@ -34,15 +34,18 @@ class HybridRetriever(BaseRetriever):
             if not component.is_built:
                 component.build(notes, summaries)
 
-    def fuse(self, query: str, timer: StageTimer) -> tuple[Ranked, np.ndarray]:
-        """Full fused ranking (up to 2×depth notes) and the query vector, reused by plans that re-rank."""
-        with timer.stage("bm25"):
+    def fuse(self, query: str, timer: StageTimer, prefix: str = "") -> tuple[Ranked, np.ndarray]:
+        """Full fused ranking (up to 2×depth notes) and the query vector, reused by plans that re-rank.
+
+        `prefix` namespaces the stage names (e.g. "summary_") so callers never nest timed stages.
+        """
+        with timer.stage(f"{prefix}bm25"):
             lexical = self.bm25.search(query, self.depth)
-        with timer.stage("encode_query"):
+        with timer.stage(f"{prefix}encode_query"):
             qvec = self.dense.query_vector(query)
-        with timer.stage("dense"):
+        with timer.stage(f"{prefix}dense"):
             semantic = self.dense.search_vector(qvec, self.depth)
-        with timer.stage("fuse"):
+        with timer.stage(f"{prefix}fuse"):
             fused = rrf([lexical, semantic], self.rrf_k)
         return fused, qvec
 

@@ -3,7 +3,7 @@
 import argparse
 import sys
 
-from mem27.retrieval.data_g import ConversionError, convert_lme_s
+from mem27.retrieval.longmemeval import ConversionError, convert_lme_s
 
 
 def main(argv: list[str] | None = None) -> int:

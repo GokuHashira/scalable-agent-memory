@@ -147,7 +147,7 @@ def to_markdown_per_type(metrics_by_run: dict[str, dict[str, Any]], metric: str 
 
 
 def write_reports(run_dirs: list[Path], questions_path: Path, table_path: Path) -> dict[str, dict[str, Any]]:
-    """Evaluates each run dir (writing its metrics_g.json) and writes the combined markdown tables."""
+    """Evaluates each run dir (writing its metrics.json) and writes the combined markdown tables."""
     questions = load_questions(questions_path)
     metrics_by_run: dict[str, dict[str, Any]] = {}
     for run_dir in sorted(run_dirs):
@@ -155,7 +155,7 @@ def write_reports(run_dirs: list[Path], questions_path: Path, table_path: Path) 
         if not bundles_path.exists():
             raise FileNotFoundError(f"{bundles_path} missing; is {run_dir} a finished run directory?")
         metrics = evaluate(list(read_jsonl(bundles_path)), questions)
-        (run_dir / "metrics_g.json").write_text(json.dumps(metrics, indent=2))
+        (run_dir / "metrics.json").write_text(json.dumps(metrics, indent=2))
         metrics_by_run[run_dir.name] = metrics
     sections = [
         "# Retrieval table (local evidence metrics, G)\n",

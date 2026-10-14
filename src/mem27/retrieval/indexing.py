@@ -1,26 +1,31 @@
 """Build and persist per-history indexes with build-cost profiling (FR-014, FR-018).
 
-Layout: <index_dir>/<history_id>/<component>/..., plus <index_dir>/build_profile.json. Components: bm25 (P0),
-dense (P1). Composite plans load these instead of rebuilding, so embeddings are computed exactly once.
+Layout per history: <index_dir>/<history_id>/{bm25/, dense/, summary/, links.jsonl}, plus
+<index_dir>/build_profile.json and <index_dir>/summaries.jsonl (all sessions). Components: p0 (BM25), p1 (turn
+embeddings), p3 (extractive summaries + their index), links (deterministic link graph). p3 and links reuse the
+persisted p1 embeddings, so turns are embedded exactly once. Composite plans load these instead of rebuilding.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
 import yaml
 
+from mem27.retrieval.dense import DenseRetriever
 from mem27.retrieval.encoder import Encoder, make_encoder
-from mem27.retrieval.p1_dense import DenseRetriever
-from mem27.retrieval.plans import make_bm25
-from mem27.retrieval.profiling import capture_env, measure_build
-from mem27.schema import Note, load_notes
+from mem27.retrieval.links import build_links, write_links
+from mem27.retrieval.plans import make_bm25, make_summary_first
+from mem27.retrieval.profiling import capture_env, disk_bytes, measure_build
+from mem27.retrieval.summaries import build_extractive_summaries
+from mem27.schema import Note, Summary, load_notes, write_jsonl
 
-COMPONENTS = ("p0", "p1")
-COMPONENT_DIR = {"p0": "bm25", "p1": "dense"}
+COMPONENTS = ("p0", "p1", "p3", "links")
+COMPONENT_PATH = {"p0": "bm25", "p1": "dense", "p3": "summary", "links": "links.jsonl"}
 
 
 def group_by_history(notes: list[Note]) -> dict[str, list[Note]]:
@@ -30,14 +35,41 @@ def group_by_history(notes: list[Note]) -> dict[str, list[Note]]:
     return grouped
 
 
+def _load_dense(history_dir: Path, notes: list[Note], encoder: Encoder | None) -> DenseRetriever:
+    dense = DenseRetriever(_require(encoder))
+    dense.load(history_dir / "dense", notes)
+    return dense
+
+
 def _build_component(
-    component: str, notes: list[Note], out_dir: Path, encoder: Encoder | None, config: dict[str, Any]
+    component: str,
+    notes: list[Note],
+    history_dir: Path,
+    encoder: Encoder | None,
+    config: dict[str, Any],
+    summaries_out: list[Summary],
 ) -> dict[str, float]:
-    retriever = make_bm25(config) if component == "p0" else DenseRetriever(_require(encoder))
-    with measure_build(out_dir) as profile:
-        retriever.build(notes, None)
-        retriever.save(out_dir)
-    profile["disk_bytes"] = sum(p.stat().st_size for p in out_dir.rglob("*") if p.is_file())
+    target = history_dir / COMPONENT_PATH[component]
+    with measure_build() as profile:
+        if component == "p0":
+            retriever = make_bm25(config)
+            retriever.build(notes, None)
+            retriever.save(target)
+        elif component == "p1":
+            retriever = DenseRetriever(_require(encoder))
+            retriever.build(notes, None)
+            retriever.save(target)
+        elif component == "p3":
+            summaries = build_extractive_summaries(notes, created_ts=datetime.now(UTC).isoformat())
+            p3 = make_summary_first(_load_dense(history_dir, notes, encoder), _require(encoder), config)
+            p3.build(notes, summaries)
+            p3.save(target)
+            summaries_out.extend(summaries)
+        else:  # links
+            graph = build_links(notes, _load_dense(history_dir, notes, encoder), config["links"]["semantic_k"])
+            write_links(target, graph)
+            profile["links"] = len(graph)
+    profile["disk_bytes"] = disk_bytes(target)
     return profile
 
 
@@ -67,13 +99,17 @@ def build_indexes(
     if unknown:
         raise ValueError(f"unknown components {unknown}; buildable here: {', '.join(COMPONENTS)}")
     notes = load_notes(dataset_dir / "notes.jsonl")
-    encoder = make_encoder(encoder_kind, config) if "p1" in components else None
+    needs_encoder = any(c in components for c in ("p1", "p3", "links"))
+    encoder = make_encoder(encoder_kind, config) if needs_encoder else None
     per_history: dict[str, dict[str, dict[str, float]]] = {}
+    summaries: list[Summary] = []
     for history_id, history_notes in sorted(group_by_history(notes).items()):
         per_history[history_id] = {
-            c: _build_component(c, history_notes, index_dir / history_id / COMPONENT_DIR[c], encoder, config)
+            c: _build_component(c, history_notes, index_dir / history_id, encoder, config, summaries)
             for c in components
         }
+    if summaries:
+        write_jsonl(index_dir / "summaries.jsonl", sorted(summaries, key=lambda s: s.summary_id))
     profile = {
         "dataset": str(dataset_dir),
         "n_notes": len(notes),

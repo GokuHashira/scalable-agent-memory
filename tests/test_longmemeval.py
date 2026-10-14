@@ -5,7 +5,7 @@ import json
 
 import pytest
 
-from mem27.retrieval.data_g import ConversionError, convert_lme_s, convert_records
+from mem27.retrieval.longmemeval import ConversionError, convert_lme_s, convert_records
 from mem27.schema import load_notes, load_questions
 
 RAW = [

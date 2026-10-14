@@ -4,7 +4,7 @@ import argparse
 import glob
 from pathlib import Path
 
-from mem27.retrieval.evalg import write_reports
+from mem27.retrieval.metrics import write_reports
 
 
 def main(argv: list[str] | None = None) -> None:

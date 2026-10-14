@@ -2,7 +2,14 @@
 
 import pytest
 
-from mem27.retrieval.evalg import evaluate, percentile, random_baseline, session_recall, to_markdown_table, turn_recall
+from mem27.retrieval.metrics import (
+    evaluate,
+    percentile,
+    random_baseline,
+    session_recall,
+    to_markdown_table,
+    turn_recall,
+)
 from mem27.schema import Note, Question
 
 
@@ -88,7 +95,7 @@ def test_markdown_table_cites_runs():
 
 
 def test_write_reports(tmp_path):
-    from mem27.retrieval.evalg import write_reports
+    from mem27.retrieval.metrics import write_reports
     from mem27.schema import write_jsonl
 
     questions = [_q("a", "single-session-user", ["s1"], ["a:s1:0"])]
@@ -98,6 +105,6 @@ def test_write_reports(tmp_path):
     write_jsonl(run / "bundles.jsonl", [_bundle("a", ["a:s1:0"])])
     table = tmp_path / "table.md"
     metrics = write_reports([run], qpath, table)
-    assert (run / "metrics_g.json").exists()
+    assert (run / "metrics.json").exists()
     assert "p0-fx-seed0-warm" in table.read_text()
     assert metrics["p0-fx-seed0-warm"]["overall"]["turn_recall@20"] == 1.0
