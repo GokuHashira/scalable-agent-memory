@@ -19,7 +19,7 @@ dependencies = [
 
 [project.optional-dependencies]
 # Real embeddings (torch). Installed on Zaratan only; laptop tests use the stub encoder.
-encode = ["sentence-transformers>=3.0"]
+encode = ["sentence-transformers>=3.0", "transformers>=4.51"]  # Qwen3-Embedding needs transformers >= 4.51
 
 [dependency-groups]
 dev = [

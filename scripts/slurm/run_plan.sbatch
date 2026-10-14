@@ -13,11 +13,11 @@ PLAN=${1:?plan p0..p5}
 DS=${2:?dataset name}
 CACHE=${3:-warm}
 shift 3 || true
-cd "${SLURM_SUBMIT_DIR}"
-export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 HF_HOME=${HF_HOME:-$PWD/.cache}
+source "${SLURM_SUBMIT_DIR}/scripts/slurm/zaratan_env.sh"  # stays inside SCRATCH_ROOT
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 # caches are filled on the login node first (CR step 1); compute nodes may have no internet
-export TIKTOKEN_CACHE_DIR=${TIKTOKEN_CACHE_DIR:-$PWD/.cache/tiktoken} HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 EXTRA=()
 if [[ "${CACHE}" == "cold" ]]; then EXTRA+=(--no-warmup); fi
-uv run --extra encode python scripts/run_plan.py --plan "${PLAN}" --dataset "data/${DS}" --encoder bge \
+uv run --extra encode python scripts/run_plan.py --plan "${PLAN}" --dataset "data/${DS}" --encoder model \
   --seed 0 --cache "${CACHE}" "${EXTRA[@]}" "$@"

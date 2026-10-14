@@ -43,7 +43,7 @@ def _build_component(
 
 def _require(encoder: Encoder | None) -> Encoder:
     if encoder is None:
-        raise ValueError("an encoder is required to build dense components; pass --encoder bge|stub")
+        raise ValueError("an encoder is required to build dense components; pass --encoder model|stub")
     return encoder
 
 
@@ -105,7 +105,7 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
     parser.add_argument("--dataset", required=True, help="dir with notes.jsonl")
     parser.add_argument("--index-dir", default=None, help="default: <dataset>/index")
     parser.add_argument("--plans", default="p0,p1", help="comma-separated components to build")
-    parser.add_argument("--encoder", default="bge", choices=["bge", "stub"])
+    parser.add_argument("--encoder", default="model", choices=["model", "stub"])
     parser.add_argument("--config", default="configs/retrieval.yaml")
     args = parser.parse_args(argv)
     dataset = Path(args.dataset)

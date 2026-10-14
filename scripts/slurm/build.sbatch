@@ -11,8 +11,8 @@
 set -euo pipefail
 DS=${1:?dataset name, e.g. lme_s_g}
 PLANS=${2:-p0,p1}
-cd "${SLURM_SUBMIT_DIR}"
-export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK} OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 HF_HOME=${HF_HOME:-$PWD/.cache}
+source "${SLURM_SUBMIT_DIR}/scripts/slurm/zaratan_env.sh"  # stays inside SCRATCH_ROOT
+export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK} OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 # caches are filled on the login node first (CR step 1); compute nodes may have no internet
-export TIKTOKEN_CACHE_DIR=${TIKTOKEN_CACHE_DIR:-$PWD/.cache/tiktoken} HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
-uv run --extra encode python scripts/build_indexes.py --dataset "data/${DS}" --plans "${PLANS}" --encoder bge
+export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+uv run --extra encode python scripts/build_indexes.py --dataset "data/${DS}" --plans "${PLANS}" --encoder model

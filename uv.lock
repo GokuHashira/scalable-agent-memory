@@ -682,6 +682,7 @@ dependencies = [
 [package.optional-dependencies]
 encode = [
     { name = "sentence-transformers" },
+    { name = "transformers" },
 ]
 
 [package.dev-dependencies]
@@ -700,6 +701,7 @@ requires-dist = [
     { name = "rank-bm25", specifier = ">=0.2.2" },
     { name = "sentence-transformers", marker = "extra == 'encode'", specifier = ">=3.0" },
     { name = "tiktoken", specifier = ">=0.7" },
+    { name = "transformers", marker = "extra == 'encode'", specifier = ">=4.51" },
 ]
 provides-extras = ["encode"]
 

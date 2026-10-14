@@ -101,7 +101,7 @@ def main(argv: list[str] | None = None) -> Path:
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--index-dir", default=None, help="default: <dataset>/index")
     parser.add_argument("--config", default="configs/retrieval.yaml")
-    parser.add_argument("--encoder", default="bge", choices=["bge", "stub"])
+    parser.add_argument("--encoder", default="model", choices=["model", "stub"])
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--cache", default="warm", choices=["warm", "cold"])
     parser.add_argument("--no-warmup", action="store_true")

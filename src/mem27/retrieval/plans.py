@@ -58,7 +58,7 @@ def load_plan(
     if plan == "p0":
         return _load_bm25(index_dir, history_id, notes, config)
     if encoder is None:
-        raise ValueError(f"plan {plan} needs an encoder to embed queries; pass --encoder bge|stub")
+        raise ValueError(f"plan {plan} needs an encoder to embed queries; pass --encoder model|stub")
     if plan == "p1":
         return _load_dense(index_dir, history_id, notes, encoder)
     if plan == "p2":

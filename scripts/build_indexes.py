@@ -1,4 +1,4 @@
-"""Build and persist per-history indexes (cluster: --encoder bge; laptop smoke: --encoder stub)."""
+"""Build and persist per-history indexes (cluster: --encoder model; laptop smoke: --encoder stub)."""
 
 from mem27.retrieval.indexing import main
 
