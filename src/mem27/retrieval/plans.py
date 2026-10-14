@@ -21,6 +21,23 @@ from mem27.retrieval.summary_first import SummaryFirstRetriever
 from mem27.schema import Note
 
 PLAN_IDS = ("p0", "p1", "p2", "p3", "p4", "p5")
+# Descriptive names are used for CLI arguments and folder names; research ids (p0–p5) stay inside records.
+PLAN_NAMES = {"p0": "bm25", "p1": "dense", "p2": "hybrid", "p3": "summary_first", "p4": "one_hop", "p5": "bounded"}
+_BY_NAME = {name: pid for pid, name in PLAN_NAMES.items()}
+
+
+def plan_id(plan: str) -> str:
+    """Research id for a plan given as id or name ("hybrid" → "p2")."""
+    if plan in PLAN_NAMES:
+        return plan
+    if plan in _BY_NAME:
+        return _BY_NAME[plan]
+    raise ValueError(f"unknown plan {plan!r}; expected one of {', '.join(PLAN_NAMES.values())} (or p0–p5)")
+
+
+def plan_name(plan: str) -> str:
+    """Descriptive name for a plan given as id or name ("p2" → "hybrid")."""
+    return PLAN_NAMES[plan_id(plan)]
 
 
 def make_bm25(config: dict[str, Any]) -> BM25Retriever:
@@ -50,6 +67,7 @@ def make_traversal(
 
 def make_plan(plan: str, encoder: Encoder, config: dict[str, Any]) -> BaseRetriever:
     """An unbuilt retriever; `build(notes, summaries)` builds every component it needs (tests, small data)."""
+    plan = plan_id(plan)
     if plan == "p0":
         return make_bm25(config)
     if plan == "p1":
@@ -79,6 +97,7 @@ def load_plan(
     plan: str, index_dir: Path, history_id: str, notes: list[Note], encoder: Encoder | None, config: dict[str, Any]
 ) -> BaseRetriever:
     """A ready retriever for one history, assembled from persisted components (nothing is re-embedded)."""
+    plan = plan_id(plan)
     if plan == "p0":
         return _load_bm25(index_dir, history_id, notes, config)
     if encoder is None:

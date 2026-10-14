@@ -76,7 +76,7 @@ class DenseRetriever(BaseRetriever):
     def _load(self, index_dir: Path) -> None:
         emb_path, ids_path = index_dir / "emb.npy", index_dir / "ids.json"
         if not emb_path.exists() or not ids_path.exists():
-            raise FileNotFoundError(f"{index_dir} lacks emb.npy/ids.json; run scripts/build_indexes.py --plans p1")
+            raise FileNotFoundError(f"{index_dir} lacks emb.npy/ids.json; run scripts/build_indexes.py --plans dense")
         meta = json.loads(ids_path.read_text())
         if meta["encoder"] != self.encoder.name:
             raise ValueError(

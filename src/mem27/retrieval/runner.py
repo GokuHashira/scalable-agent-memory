@@ -1,6 +1,6 @@
 """Run one plan over a dataset and write a self-describing run directory (FR-012, FR-016, FR-017).
 
-runs/<plan>-<dataset>-seed<N>-<cache>/ gets bundles.jsonl, config.resolved.yaml and env.json. Warm runs execute
+runs/<plan-name>-<dataset>-seed<N>-<cache>/ gets bundles.jsonl, config.resolved.yaml and env.json. Warm runs execute
 `warmup_queries` throwaway queries first; indexes are always loaded from disk, never rebuilt here.
 """
 
@@ -16,13 +16,13 @@ import yaml
 from mem27.retrieval.base import BaseRetriever
 from mem27.retrieval.encoder import Encoder, make_encoder
 from mem27.retrieval.indexing import group_by_history
-from mem27.retrieval.plans import PLAN_IDS, load_plan
+from mem27.retrieval.plans import PLAN_IDS, PLAN_NAMES, load_plan, plan_id, plan_name
 from mem27.retrieval.profiling import capture_env
 from mem27.schema import Question, RetrievalRequest, load_notes, load_questions, to_dict, write_jsonl
 
 
 def default_run_dir(plan: str, dataset_dir: Path, seed: int, cache: str) -> Path:
-    return Path("runs") / f"{plan}-{dataset_dir.name}-seed{seed}-{cache}"
+    return Path("runs") / f"{plan_name(plan)}-{dataset_dir.name}-seed{seed}-{cache}"
 
 
 def _request(question: Question, plan: str, config: dict[str, Any]) -> RetrievalRequest:
@@ -65,8 +65,7 @@ def run_plan(
     warmup: bool,
     limit: int | None,
 ) -> Path:
-    if plan not in PLAN_IDS:
-        raise ValueError(f"unknown plan {plan!r}; expected one of {', '.join(PLAN_IDS)}")
+    plan = plan_id(plan)
     questions = load_questions(dataset_dir / "questions.jsonl")[:limit]
     notes_by_history = group_by_history(load_notes(dataset_dir / "notes.jsonl"))
     encoder = None if plan == "p0" else make_encoder(encoder_kind, config)
@@ -80,6 +79,7 @@ def run_plan(
     resolved = {
         **config,
         "plan": plan,
+        "plan_name": plan_name(plan),
         "dataset": str(dataset_dir),
         "index_dir": str(index_dir),
         "encoder_kind": encoder_kind,
@@ -97,7 +97,7 @@ def run_plan(
 
 def main(argv: list[str] | None = None) -> Path:
     parser = argparse.ArgumentParser(description="Run one retrieval plan over a dataset.")
-    parser.add_argument("--plan", required=True, choices=PLAN_IDS)
+    parser.add_argument("--plan", required=True, choices=[*PLAN_NAMES.values(), *PLAN_IDS])
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--index-dir", default=None, help="default: <dataset>/index")
     parser.add_argument("--config", default="configs/retrieval.yaml")

@@ -58,7 +58,7 @@ class BM25Retriever(BaseRetriever):
     def _load(self, index_dir: Path) -> None:
         path = index_dir / "bm25.pkl"
         if not path.exists():
-            raise FileNotFoundError(f"{path} missing; run scripts/build_indexes.py --plans p0 first")
+            raise FileNotFoundError(f"{path} missing; run scripts/build_indexes.py --plans bm25 first")
         with path.open("rb") as src:
             state = pickle.load(src)
         self._ids, self._bm25, self.k1, self.b = state["ids"], state["bm25"], state["k1"], state["b"]

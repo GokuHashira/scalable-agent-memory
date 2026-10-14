@@ -32,7 +32,9 @@ class SummaryFirstRetriever(BaseRetriever):
 
     def _build_index(self, notes: list[Note], summaries: list[Summary] | None) -> None:
         if not summaries:
-            raise ValueError("SummaryFirstRetriever.build needs summaries; run build_indexes.py --plans p3 first")
+            raise ValueError(
+                "SummaryFirstRetriever.build needs summaries; run build_indexes.py --plans summary_first first"
+            )
         if not self.dense.is_built:
             self.dense.build(notes, None)
         self._summaries = sorted(summaries, key=lambda s: s.summary_id)

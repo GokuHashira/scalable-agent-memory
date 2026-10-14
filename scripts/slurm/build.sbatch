@@ -9,8 +9,8 @@
 #SBATCH --time=02:00:00
 #SBATCH --output=logs/%x-%j.out
 set -euo pipefail
-DS=${1:?dataset name, e.g. lme_s_g}
-PLANS=${2:-p0,p1}
+DS=${1:?dataset name, e.g. lme_s}
+PLANS=${2:-bm25,dense}
 source "${SLURM_SUBMIT_DIR}/scripts/slurm/zaratan_env.sh"  # stays inside SCRATCH_ROOT
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK} OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 # caches are filled on the login node first (CR step 1); compute nodes may have no internet

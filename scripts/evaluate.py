@@ -9,7 +9,7 @@ from mem27.retrieval.metrics import write_reports
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--runs", nargs="+", required=True, help="run dirs or glob patterns, e.g. 'runs/p*-lme_s_g-*'")
+    parser.add_argument("--runs", nargs="+", required=True, help="run dirs or glob patterns, e.g. 'runs/*-lme_s-*'")
     parser.add_argument("--questions", required=True)
     parser.add_argument("--table", default="docs/midterm/retrieval_table.md")
     args = parser.parse_args(argv)

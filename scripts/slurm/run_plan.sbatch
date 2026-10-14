@@ -9,7 +9,7 @@
 #SBATCH --time=02:00:00
 #SBATCH --output=logs/%x-%j.out
 set -euo pipefail
-PLAN=${1:?plan p0..p5}
+PLAN=${1:?plan name: bm25|dense|hybrid|summary_first|one_hop|bounded}
 DS=${2:?dataset name}
 CACHE=${3:-warm}
 shift 3 || true

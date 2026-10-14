@@ -1,6 +1,6 @@
 .PHONY: fixture test check coverage baseline reproduce
 
-DS ?= lme_s_g
+DS ?= lme_s
 PY := uv run python
 CONFIG := configs/retrieval.yaml
 
@@ -21,11 +21,11 @@ coverage:
 	uv run coverage report
 
 baseline:  ## cluster only: build, run P0-P5 warm, P0/P2 cold, evaluate
-	$(PY) scripts/build_indexes.py --dataset data/$(DS) --plans p0,p1,p3,links --config $(CONFIG)
-	for p in p0 p1 p2 p3 p4 p5; do $(PY) scripts/run_plan.py --plan $$p --dataset data/$(DS) --config $(CONFIG) --seed 0 --cache warm; done
-	for p in p0 p2; do $(PY) scripts/run_plan.py --plan $$p --dataset data/$(DS) --config $(CONFIG) --seed 0 --cache cold --no-warmup; done
-	$(PY) scripts/evaluate.py --runs 'runs/p*-$(DS)-*' --questions data/$(DS)/questions.jsonl
+	$(PY) scripts/build_indexes.py --dataset data/$(DS) --plans bm25,dense,summary_first,links --config $(CONFIG)
+	for p in bm25 dense hybrid summary_first one_hop bounded; do $(PY) scripts/run_plan.py --plan $$p --dataset data/$(DS) --config $(CONFIG) --seed 0 --cache warm; done
+	for p in bm25 hybrid; do $(PY) scripts/run_plan.py --plan $$p --dataset data/$(DS) --config $(CONFIG) --seed 0 --cache cold --no-warmup; done
+	$(PY) scripts/evaluate.py --runs 'runs/*-$(DS)-*' --questions data/$(DS)/questions.jsonl
 
 reproduce:  ## regenerate the midterm tables from existing run directories
-	$(PY) scripts/evaluate.py --runs 'runs/p*-$(DS)-*' --questions data/$(DS)/questions.jsonl
+	$(PY) scripts/evaluate.py --runs 'runs/*-$(DS)-*' --questions data/$(DS)/questions.jsonl
 	$(PY) scripts/profile_indexes.py --dataset data/$(DS)

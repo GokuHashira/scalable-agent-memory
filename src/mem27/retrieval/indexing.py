@@ -1,9 +1,10 @@
 """Build and persist per-history indexes with build-cost profiling (FR-014, FR-018).
 
 Layout per history: <index_dir>/<history_id>/{bm25/, dense/, summary/, links.jsonl}, plus
-<index_dir>/build_profile.json and <index_dir>/summaries.jsonl (all sessions). Components: p0 (BM25), p1 (turn
-embeddings), p3 (extractive summaries + their index), links (deterministic link graph). p3 and links reuse the
-persisted p1 embeddings, so turns are embedded exactly once. Composite plans load these instead of rebuilding.
+<index_dir>/build_profile.json and <index_dir>/summaries.jsonl (all sessions). Components: bm25, dense (turn
+embeddings), summary_first (extractive summaries + their index), links (deterministic link graph). summary_first
+and links reuse the persisted dense embeddings, so turns are embedded exactly once. Composite plans load these
+instead of rebuilding.
 """
 
 from __future__ import annotations
@@ -24,8 +25,9 @@ from mem27.retrieval.profiling import capture_env, disk_bytes, measure_build
 from mem27.retrieval.summaries import build_extractive_summaries
 from mem27.schema import Note, Summary, load_notes, write_jsonl
 
-COMPONENTS = ("p0", "p1", "p3", "links")
-COMPONENT_PATH = {"p0": "bm25", "p1": "dense", "p3": "summary", "links": "links.jsonl"}
+COMPONENTS = ("bm25", "dense", "summary_first", "links")
+COMPONENT_PATH = {"bm25": "bm25", "dense": "dense", "summary_first": "summary", "links": "links.jsonl"}
+_COMPONENT_ALIASES = {"p0": "bm25", "p1": "dense", "p3": "summary_first"}
 
 
 def group_by_history(notes: list[Note]) -> dict[str, list[Note]]:
@@ -51,15 +53,15 @@ def _build_component(
 ) -> dict[str, float]:
     target = history_dir / COMPONENT_PATH[component]
     with measure_build() as profile:
-        if component == "p0":
+        if component == "bm25":
             retriever = make_bm25(config)
             retriever.build(notes, None)
             retriever.save(target)
-        elif component == "p1":
+        elif component == "dense":
             retriever = DenseRetriever(_require(encoder))
             retriever.build(notes, None)
             retriever.save(target)
-        elif component == "p3":
+        elif component == "summary_first":
             summaries = build_extractive_summaries(notes, created_ts=datetime.now(UTC).isoformat())
             p3 = make_summary_first(_load_dense(history_dir, notes, encoder), _require(encoder), config)
             p3.build(notes, summaries)
@@ -95,11 +97,12 @@ def _totals(per_history: dict[str, dict[str, dict[str, float]]], components: lis
 def build_indexes(
     dataset_dir: Path, index_dir: Path, components: list[str], encoder_kind: str, config: dict[str, Any]
 ) -> dict[str, Any]:
+    components = [_COMPONENT_ALIASES.get(c, c) for c in components]
     unknown = [c for c in components if c not in COMPONENTS]
     if unknown:
         raise ValueError(f"unknown components {unknown}; buildable here: {', '.join(COMPONENTS)}")
     notes = load_notes(dataset_dir / "notes.jsonl")
-    needs_encoder = any(c in components for c in ("p1", "p3", "links"))
+    needs_encoder = any(c in components for c in ("dense", "summary_first", "links"))
     encoder = make_encoder(encoder_kind, config) if needs_encoder else None
     per_history: dict[str, dict[str, dict[str, float]]] = {}
     summaries: list[Summary] = []
@@ -125,7 +128,7 @@ def build_indexes(
 
 
 def _merge_profile(path: Path, profile: dict[str, Any]) -> None:
-    """Keeps totals from earlier builds of other components (e.g. p0,p1 first, then p3,links)."""
+    """Keeps totals from earlier builds of other components (e.g. bm25,dense first, then summary_first,links)."""
     if path.exists():
         previous = json.loads(path.read_text())
         profile["totals"] = {**previous.get("totals", {}), **profile["totals"]}
@@ -140,7 +143,7 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
     parser = argparse.ArgumentParser(description="Build and persist per-history retrieval indexes.")
     parser.add_argument("--dataset", required=True, help="dir with notes.jsonl")
     parser.add_argument("--index-dir", default=None, help="default: <dataset>/index")
-    parser.add_argument("--plans", default="p0,p1", help="comma-separated components to build")
+    parser.add_argument("--plans", default="bm25,dense", help="components: bm25,dense,summary_first,links")
     parser.add_argument("--encoder", default="model", choices=["model", "stub"])
     parser.add_argument("--config", default="configs/retrieval.yaml")
     args = parser.parse_args(argv)

@@ -11,14 +11,14 @@ from mem27.schema import read_jsonl
 def test_build_then_run_writes_run_directory(tmp_path, fixture_dir):
     index_dir = tmp_path / "index"
     indexing.main(
-        ["--dataset", str(fixture_dir), "--index-dir", str(index_dir), "--plans", "p0,p1", "--encoder", "stub"]
+        ["--dataset", str(fixture_dir), "--index-dir", str(index_dir), "--plans", "bm25,dense", "--encoder", "stub"]
     )
     profile = json.loads((index_dir / "build_profile.json").read_text())
-    assert {"p0", "p1"} <= set(profile["totals"])
-    out = tmp_path / "runs" / "p2-fixture-seed0-warm"
+    assert {"bm25", "dense"} <= set(profile["totals"])
+    out = tmp_path / "runs" / "hybrid-fixture-seed0-warm"
     runner.main(
         [
-            "--plan", "p2",
+            "--plan", "hybrid",
             "--dataset", str(fixture_dir),
             "--index-dir", str(index_dir),
             "--encoder", "stub",
@@ -37,27 +37,27 @@ def test_build_then_run_writes_run_directory(tmp_path, fixture_dir):
     assert resolved["plan"] == "p2" and resolved["budget_tokens"] == 2048
 
 
-def test_structure_components_and_p3_to_p5_runs(tmp_path, fixture_dir):
+def test_structure_components_and_structured_plan_runs(tmp_path, fixture_dir):
     index_dir = tmp_path / "index"
     base = ["--dataset", str(fixture_dir), "--index-dir", str(index_dir), "--encoder", "stub"]
-    indexing.main([*base, "--plans", "p0,p1"])
-    indexing.main([*base, "--plans", "p3,links"])
+    indexing.main([*base, "--plans", "bm25,dense"])
+    indexing.main([*base, "--plans", "summary_first,links"])
     profile = json.loads((index_dir / "build_profile.json").read_text())
-    assert {"p0", "p1", "p3", "links"} <= set(profile["totals"])
+    assert {"bm25", "dense", "summary_first", "links"} <= set(profile["totals"])
     assert (index_dir / "fx000" / "links.jsonl").exists()
     assert (index_dir / "fx000" / "summary" / "summaries.jsonl").exists()
     assert len(list(read_jsonl(fixture_dir.parent / "fixture" / "notes.jsonl"))) > 0
-    for plan in ("p3", "p4", "p5"):
+    for plan, pid in (("summary_first", "p3"), ("one_hop", "p4"), ("bounded", "p5")):
         out = tmp_path / "runs" / f"{plan}-fixture-seed0-warm"
         runner.main(["--plan", plan, *base[:4], "--encoder", "stub", "--limit", "3", "--no-warmup", "--out", str(out)])
         bundles = list(read_jsonl(out / "bundles.jsonl"))
-        assert len(bundles) == 3 and all(b["plan"] == plan for b in bundles)
+        assert len(bundles) == 3 and all(b["plan"] == pid for b in bundles)
 
 
 def test_links_require_dense_component(tmp_path, fixture_dir):
     import pytest
 
-    with pytest.raises(FileNotFoundError, match="--plans p1"):
+    with pytest.raises(FileNotFoundError, match="--plans dense"):
         indexing.main(
             [
                 "--dataset",
