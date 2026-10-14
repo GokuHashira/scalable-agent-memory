@@ -1,0 +1,27 @@
+# Retrieval substrate knobs (feature 001). Pinned here, never in code (constitution V).
+budget_tokens: 2048
+budget_ms: 5000
+max_results: 20
+tokenizer: cl100k_base
+encoder:
+  model: BAAI/bge-base-en-v1.5
+  dtype: fp16
+  batch_size: 256
+  query_prefix: "Represent this sentence for searching relevant passages: "
+bm25:
+  k1: 1.5
+  b: 0.75
+hybrid:
+  rrf_k: 60
+  depth: 50
+summary_first:
+  top_sessions: 5
+  kind: extractive
+traversal:
+  anchors: 5
+  hops: 4
+  cap: 50
+links:
+  semantic_k: 5
+parent_note_tokens: 64
+warmup_queries: 20
