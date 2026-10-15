@@ -20,10 +20,10 @@
 | dense | 0.906 | 0.988 | 0.947 | 1,570 | 17.1 | 347.9 | 497.3 |
 | hybrid | 0.893 | 0.966 | 0.885 | 1,808 | 12.9 | 343.8 | 534.7 |
 | summary_first | 0.841 | 0.879 | 0.862 | 1,730 | 15.7 | 346.6 | 509.7 |
-| one_hop | — | — | — | — | — | — | — |
+| one_hop | 0.893 | 0.934 | 0.912 | 1,753 | 14.4 | 370.0 | 550.8 |
 | bounded | 0.893 | 0.947 | 0.924 | 1,759 | 15.7 | 337.6 | 526.5 |
 
-Every method returns 500 result sets; none is empty and none exceeds 2,048 tokens. one_hop is being re-run.
+Every method returns 500 result sets; none is empty and none exceeds 2,048 tokens.
 
 ### Turn recall@20 by question type
 
@@ -33,6 +33,7 @@ Every method returns 500 result sets; none is empty and none exceeds 2,048 token
 | dense | 0.986 | 0.925 | 0.982 | 0.906 | 0.977 | 0.924 |
 | hybrid | 0.975 | 0.811 | 0.982 | 0.733 | 0.977 | 0.852 |
 | summary_first | 0.931 | 0.840 | 0.964 | 0.722 | 0.859 | 0.831 |
+| one_hop | 0.975 | 0.868 | 1.000 | 0.756 | 0.992 | 0.875 |
 | bounded | 0.986 | 0.888 | 1.000 | 0.756 | 0.992 | 0.895 |
 
 ### Latency by stage (p50 ms)
@@ -43,6 +44,7 @@ Every method returns 500 result sets; none is empty and none exceeds 2,048 token
 | dense | 346.4 | 0.2 | — | 1.0 | 347.9 |
 | hybrid | 339.3 | 2.5 | 0.1 | 1.2 | 343.8 |
 | summary_first | 344.3 | 0.4 | 0.2 | 1.0 | 346.6 |
+| one_hop | 365.5 | 2.4 | 0.3 | 1.1 | 370.0 |
 | bounded | 334.4 | 2.2 | 0.2 | 1.2 | 337.6 |
 
 ### Index build cost
@@ -62,7 +64,8 @@ Projections are linear in turn-note count for per-history flat indexes. Peak mem
 - bm25 is weakest on single-session-preference (0.372) and multi-session (0.604) turn recall.
 - Query encoding accounts for about 99% of latency in every method that embeds the query; all other stages
   together take under 3 ms.
-- bounded reached the 50-candidate limit on all 500 questions, after a mean of 2.28 hops.
+- one_hop expanded to a mean of 29 candidates; bounded reached the 50-candidate limit on all 500 questions, after a
+  mean of 2.28 hops.
 - summary_first has the lowest session recall@20 (0.879).
 
 ## Example failures
