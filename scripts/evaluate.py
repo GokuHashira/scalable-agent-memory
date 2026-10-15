@@ -1,4 +1,4 @@
-"""Evaluate run directories with G's local evidence metrics and write docs/midterm/retrieval_table.md."""
+"""Evaluate run directories with the local evidence metrics and write docs/midterm/retrieval_table.md."""
 
 import argparse
 import glob

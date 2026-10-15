@@ -1,1 +1,1 @@
-"""Retrieval substrate (owner G): plans P0-P5, links, summaries, indexes, local metrics."""
+"""Retrieval substrate: the six retrieval plans, links, summaries, indexes, local metrics."""

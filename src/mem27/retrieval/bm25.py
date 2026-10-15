@@ -1,4 +1,4 @@
-"""P0: lexical BM25 over the turn notes of one history (research R3)."""
+"""Lexical BM25 over the turn notes of one history (research R3)."""
 
 from __future__ import annotations
 

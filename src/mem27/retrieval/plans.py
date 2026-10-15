@@ -1,6 +1,6 @@
 """Plan registry: plan id → a ready-to-build retriever wired from the pinned config.
 
-Leaf components (P0 lexical, P1 dense) are the units persisted per history; composite plans reuse them, so the
+Leaf components (bm25, dense) are the units persisted per history; composite plans reuse them, so the
 expensive embeddings are computed once by build_indexes and only loaded by run_plan.
 """
 

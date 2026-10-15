@@ -1,4 +1,4 @@
-"""G's local evidence metrics (research R10). V's canonical metrics replace these later on the same bundle format.
+"""Local evidence metrics (research R10). Canonical shared metrics may replace these later on the same bundle format.
 
 Recall is evidence-level only (no reader or judge). Abstention questions have no gold evidence, so they are
 reported separately; questions without gold turns are skipped for turn recall and counted, never silently dropped.
@@ -158,7 +158,7 @@ def write_reports(run_dirs: list[Path], questions_path: Path, table_path: Path) 
         (run_dir / "metrics.json").write_text(json.dumps(metrics, indent=2))
         metrics_by_run[run_dir.name] = metrics
     sections = [
-        "# Retrieval table (local evidence metrics, G)\n",
+        "# Retrieval table (local evidence metrics)\n",
         f"Questions: `{questions_path}`. Each row is a run directory under `runs/`.\n",
         to_markdown_table(metrics_by_run),
         "\n## Per question type: session recall@20\n",

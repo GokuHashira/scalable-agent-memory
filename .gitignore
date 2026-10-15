@@ -22,3 +22,5 @@ dist/
 .vscode/
 .idea/
 logs/
+scripts/slurm/
+notes.txt

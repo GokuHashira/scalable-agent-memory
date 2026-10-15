@@ -1,4 +1,4 @@
-"""LongMemEval_S → shared notes/questions (G's own copy; V's canonical adapter replaces it later).
+"""LongMemEval_S → shared notes/questions (local adapter; a canonical shared adapter may replace it later).
 
 This module is the barricade: every raw record is validated here and rejected with a message naming the question
 and field, so code downstream can assume well-formed notes (constitution II: correctness over robustness).

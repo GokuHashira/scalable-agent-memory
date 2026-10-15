@@ -1,6 +1,6 @@
-# STAND-IN — owned by K; replace with K's schema.py verbatim.
-# Mirrors the shared contract in spec-docs/slice-G-retrieval.md §0 field for field. Do not extend it unilaterally
-# (constitution III); tests/test_contract.py pins the field names so a swap to K's file surfaces any drift.
+# STAND-IN — replace with the shared schema.py verbatim when it lands in this repo.
+# Mirrors the shared record contract field for field. Do not extend it unilaterally
+# (constitution III); tests/test_contract.py pins the field names so a swap to the shared file surfaces any drift.
 """Shared records, retriever protocol, and token-budget helpers used by every workstream."""
 
 from __future__ import annotations

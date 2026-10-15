@@ -1,4 +1,4 @@
-"""P4: hybrid anchors expanded by exactly one hop over all link types."""
+"""One hop: hybrid anchors expanded by exactly one hop over all link types."""
 
 from __future__ import annotations
 

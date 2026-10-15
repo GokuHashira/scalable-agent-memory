@@ -1,4 +1,4 @@
-"""P3: find the best sessions by their summaries, then return those sessions' turns ranked by similarity (R7)."""
+"""Summary-first: pick the best sessions by their summaries, then rank those sessions' turns by similarity."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ class SummaryFirstRetriever(BaseRetriever):
 
     def __init__(self, dense: DenseRetriever, summary_index: HybridRetriever, top_sessions: int = 5):
         super().__init__()
-        self.dense = dense  # turn-level embeddings (shared with P1)
+        self.dense = dense  # turn-level embeddings (shared with the dense plan)
         self.summary_index = summary_index  # BM25 + dense over summary texts
         self.top_sessions = top_sessions
         self._summaries: list[Summary] = []

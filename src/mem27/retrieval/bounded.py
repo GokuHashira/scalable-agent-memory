@@ -1,4 +1,4 @@
-"""P5: hybrid anchors expanded breadth-first with a hop budget and a candidate cap (mirrors All-Mem)."""
+"""Bounded traversal: hybrid anchors expanded breadth-first with a hop budget and a candidate cap (mirrors All-Mem)."""
 
 from __future__ import annotations
 

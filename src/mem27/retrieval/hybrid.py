@@ -1,4 +1,4 @@
-"""P2: reciprocal-rank fusion of P0 and P1 (research R5). Also the anchor source for P4/P5."""
+"""Reciprocal-rank fusion of bm25 and dense (research R5). Also the anchor source for one_hop and bounded."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Write the deterministic offline fixture (stand-in for K's make_fixture.py)."""
+"""Write the deterministic offline fixture (stand-in for the shared fixture generator)."""
 
 import argparse
 

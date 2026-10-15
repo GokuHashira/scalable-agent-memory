@@ -16,11 +16,11 @@ uv sync --extra encode     # cluster: adds sentence-transformers / torch for rea
 |---|---|---|
 | `make fixture` | laptop | build the 5,500-note deterministic fixture in `data/fixture/` |
 | `make check` | laptop | ruff format check, ruff lint, ty, pytest |
-| `make baseline DS=lme_s` | Zaratan | build indexes, run P0–P5, evaluate |
+| `make baseline DS=lme_s` | Zaratan | build indexes, run all six plans, evaluate |
 | `make reproduce DS=lme_s` | anywhere | rebuild the tables in `docs/midterm/` from `runs/` |
 
 ## Layout
 
-`src/mem27/` is the library: `schema.py` holds the shared contract, and `retrieval/` holds P0–P5, links and summaries.
+`src/mem27/` is the library: `schema.py` holds the shared contract, and `retrieval/` holds the six retrieval plans, links and summaries.
 `scripts/` holds thin CLIs and `scripts/slurm/` the Slurm wrappers. Experiment knobs live in `configs/`. Tests are in
 `tests/`, and run outputs go to `runs/<plan-name>-<dataset>-seed<N>-<cold|warm>/`, which is git-ignored.

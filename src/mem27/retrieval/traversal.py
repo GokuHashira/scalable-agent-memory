@@ -1,4 +1,4 @@
-"""Shared machinery for P4/P5: expand P2 anchors along links, then re-rank by similarity (research R8).
+"""Shared machinery for one_hop and bounded: expand hybrid anchors along links, then re-rank by similarity.
 
 Session parents can be traversed through but are never returned as evidence. Results keep the anchors first (in
 hybrid order), followed by expanded candidates ordered by cosine to the query; every score is that cosine.

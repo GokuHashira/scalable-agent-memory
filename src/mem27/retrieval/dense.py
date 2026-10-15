@@ -1,4 +1,4 @@
-"""P1: dense retrieval with an exact inner-product index over normalised embeddings (research R4)."""
+"""Dense retrieval with an exact inner-product index over normalised embeddings (research R4)."""
 
 from __future__ import annotations
 
@@ -14,7 +14,10 @@ from mem27.schema import Note, RetrievalRequest, Summary
 
 
 class DenseRetriever(BaseRetriever):
-    """Also serves cosine similarity to other plans (P3–P5 re-rank by it) so embeddings are computed once."""
+    """Also serves cosine similarity to other plans (summary_first, one_hop and bounded re-rank by it).
+
+    Embeddings are therefore computed once and shared.
+    """
 
     plan_id = "p1"
 
