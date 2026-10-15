@@ -23,4 +23,4 @@ uv sync --extra encode     # cluster: adds sentence-transformers / torch for rea
 
 `src/mem27/` is the library: `schema.py` holds the shared contract, and `retrieval/` holds the six retrieval plans, links and summaries.
 `scripts/` holds thin CLIs and `scripts/slurm/` the Slurm wrappers. Experiment knobs live in `configs/`. Tests are in
-`tests/`, and run outputs go to `runs/<plan-name>-<dataset>-seed<N>-<cold|warm>/`, which is git-ignored.
+`tests/`, and run outputs go to `runs/<method>-<dataset>-seed<N>-<cold|warm>/`, which is git-ignored.
