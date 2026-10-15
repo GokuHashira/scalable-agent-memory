@@ -29,12 +29,14 @@ export MAMBA_ROOT_PREFIX=${SCRATCH_ROOT}/micromamba
 micromamba activate "${SCRATCH_ROOT}/envs/mem27"
 
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
-export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1   # single-threaded query path for stable latency
+export UV_NO_SYNC=1   # never re-sync the shared .venv from a job (concurrent array tasks raced on it); sync once on the login node
+export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-16} MKL_NUM_THREADS=${SLURM_CPUS_PER_TASK:-16} OPENBLAS_NUM_THREADS=1
+# all 16 cores of the exclusive node: one thread made Qwen query encoding ~3.4 s/query (2026-10-15 runs)
 
 echo "task=${SLURM_ARRAY_TASK_ID} plan=${PLAN} dataset=${DS} cache=${RUN_CACHE}"
 echo "host=$(hostname)"
 
 EXTRA=()
 if [[ "${RUN_CACHE}" == "cold" ]]; then EXTRA+=(--no-warmup); fi
-uv run --extra encode python scripts/run_plan.py --plan "${PLAN}" --dataset "data/${DS}" --encoder model \
+uv run --no-sync python scripts/run_plan.py --plan "${PLAN}" --dataset "data/${DS}" --encoder model \
   --seed 0 --cache "${RUN_CACHE}" "${EXTRA[@]}"

@@ -24,6 +24,7 @@ export MAMBA_ROOT_PREFIX=${SCRATCH_ROOT}/micromamba
 micromamba activate "${SCRATCH_ROOT}/envs/mem27"
 
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+export UV_NO_SYNC=1   # never re-sync the shared .venv from a job (concurrent array tasks raced on it); sync once on the login node
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-4}
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
@@ -31,4 +32,4 @@ echo "dataset=${DS} components=${COMPONENTS}"
 echo "host=$(hostname) gpu=${CUDA_VISIBLE_DEVICES:-unset}"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 
-uv run --extra encode python scripts/build_indexes.py --dataset "data/${DS}" --plans "${COMPONENTS}" --encoder model
+uv run --no-sync python scripts/build_indexes.py --dataset "data/${DS}" --plans "${COMPONENTS}" --encoder model
