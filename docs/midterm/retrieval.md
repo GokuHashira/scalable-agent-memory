@@ -80,8 +80,10 @@ Projections are linear in turn-note count for per-history flat indexes. Peak mem
 
 Retrieval runs: AMD EPYC 7763 (128 cores), 16 threads, exclusive node. Index builds: NVIDIA A100-SXM4-40GB.
 Python 3.12.15, torch 2.14.1, sentence-transformers 6.1.0, faiss-cpu 1.15.1, rank-bm25 0.2.2. Results are warm
-(indexes loaded, 20 warm-up queries). Fixture tests confirm identical rankings across repeated runs and after
-save/load.
+(indexes loaded, 20 warm-up queries).
+
+Determinism: re-running hybrid on 50 questions on a different node reproduced all 50 rankings exactly (identical
+result ids, order and scores). Fixture tests confirm the same for every method, including after save/load.
 
 ## Reproduce
 
