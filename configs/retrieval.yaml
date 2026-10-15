@@ -1,0 +1,29 @@
+# Retrieval substrate knobs (feature 001). Pinned here, never in code (constitution V).
+budget_tokens: 2048
+budget_ms: 5000
+max_results: 20
+tokenizer: cl100k_base
+encoder:
+  model: Qwen/Qwen3-Embedding-0.6B   # 1024-d, 32K context; replaces bge-base (decision 2026-10-14)
+  dtype: fp16
+  batch_size: 128                    # max texts per batch; the token budget below is the real limit
+  max_tokens_per_batch: 16384        # padded tokens per batch; sized for the 1g.5gb GPU slice (OOM on 32×2048)
+  max_seq_length: 2048               # turns longer than this are truncated by the model tokenizer
+  query_prefix: "Instruct: Given a question about a user's past conversations, retrieve the conversation turns that contain the answer\nQuery:"
+bm25:
+  k1: 1.5
+  b: 0.75
+hybrid:
+  rrf_k: 60
+  depth: 50
+summary_first:
+  top_sessions: 5
+  kind: extractive
+traversal:
+  anchors: 5
+  hops: 4
+  cap: 50
+links:
+  semantic_k: 5
+parent_note_tokens: 64
+warmup_queries: 20

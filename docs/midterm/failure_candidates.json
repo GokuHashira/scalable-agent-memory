@@ -1,0 +1,1196 @@
+[
+  {
+    "question_id": "e47becba",
+    "question_type": "single-session-user",
+    "question": "What degree did I graduate with?",
+    "answer": "Business Administration",
+    "gold_sessions": [
+      "answer_280352e9"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "52c34859_1",
+      "d414cac5_4",
+      "ec6ca9ef",
+      "f6859b48_2",
+      "sharegpt_QZMeA7V_17"
+    ]
+  },
+  {
+    "question_id": "118b2229",
+    "question_type": "single-session-user",
+    "question": "How long is my daily commute to work?",
+    "answer": "45 minutes each way",
+    "gold_sessions": [
+      "answer_40a90d51"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "004edb32",
+      "5209e813_2",
+      "7d8b5834_1",
+      "db73b7e4_4",
+      "sharegpt_M3x4mZx_0"
+    ]
+  },
+  {
+    "question_id": "51a45a95",
+    "question_type": "single-session-user",
+    "question": "Where did I redeem a $5 coupon on coffee creamer?",
+    "answer": "Target",
+    "gold_sessions": [
+      "answer_d61669c7"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "217debf7",
+      "b35610f4_3",
+      "dfe646a7_1",
+      "f32d1ccf_1",
+      "sharegpt_3vxz2Zr_0"
+    ]
+  },
+  {
+    "question_id": "b86304ba",
+    "question_type": "single-session-user",
+    "question": "How much is the painting of a sunset worth in terms of the amount I paid for it?",
+    "answer": "The painting is worth triple what I paid for it.",
+    "gold_sessions": [
+      "answer_645b0329"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "1c8832b4_2",
+      "8e9425ef_1",
+      "ea8bb4f8_2",
+      "ultrachat_10525"
+    ]
+  },
+  {
+    "question_id": "b86304ba",
+    "question_type": "single-session-user",
+    "question": "How much is the painting of a sunset worth in terms of the amount I paid for it?",
+    "answer": "The painting is worth triple what I paid for it.",
+    "gold_sessions": [
+      "answer_645b0329"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "65f3c006_1",
+      "ae00973d_4",
+      "ea8bb4f8_2",
+      "sharegpt_AFGmiGL_0"
+    ]
+  },
+  {
+    "question_id": "577d4d32",
+    "question_type": "single-session-user",
+    "question": "What time do I stop checking work emails and messages?",
+    "answer": "7 pm",
+    "gold_sessions": [
+      "answer_0dd4d99a"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "26f9a255_1",
+      "2c0d04d6_1",
+      "6e2cca63_2",
+      "b283f9eb_1",
+      "sharegpt_1ByFFwm_0"
+    ]
+  },
+  {
+    "question_id": "ec81a493",
+    "question_type": "single-session-user",
+    "question": "How many copies of my favorite artist's debut album were released worldwide?",
+    "answer": "500",
+    "gold_sessions": [
+      "answer_ed1982fc"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "616fdd27",
+      "6f55019d",
+      "ab4643a2_4",
+      "f598d30f_2",
+      "sharegpt_ST22P5t_0"
+    ]
+  },
+  {
+    "question_id": "545bd2b5",
+    "question_type": "single-session-user",
+    "question": "How much screen time have I been averaging on Instagram per day?",
+    "answer": "2 hours",
+    "gold_sessions": [
+      "answer_47ffab4c"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "b7f69a7d_1"
+    ]
+  },
+  {
+    "question_id": "c14c00dd",
+    "question_type": "single-session-user",
+    "question": "What brand of shampoo do I currently use?",
+    "answer": "Trader Joe's",
+    "gold_sessions": [
+      "answer_304511ce"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "fbf3449c_1",
+      "ffd66315_2",
+      "sharegpt_FfqJ2xI_0",
+      "sharegpt_gU0qvZu_0",
+      "sharegpt_yW4k8hG_0"
+    ]
+  },
+  {
+    "question_id": "a82c026e",
+    "question_type": "single-session-user",
+    "question": "What game did I finally beat last weekend?",
+    "answer": "Dark Souls 3 DLC",
+    "gold_sessions": [
+      "answer_787e6a6d"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "3009ba66_2",
+      "752392bb_3",
+      "a6c41826_3",
+      "f18ebe36_4",
+      "sharegpt_MBVSMQO_45"
+    ]
+  },
+  {
+    "question_id": "gpt4_f2262a51",
+    "question_type": "multi-session",
+    "question": "How many different doctors did I visit?",
+    "answer": "I visited three different doctors: a primary care physician, an ENT specialist, and a dermatologist.",
+    "gold_sessions": [
+      "answer_55a6940c_3",
+      "answer_55a6940c_1",
+      "answer_55a6940c_2"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "0984a772",
+      "161dd21d",
+      "ba1ed991_1",
+      "c34b6a1c_2",
+      "dd81b163_1",
+      "sharegpt_BWMyoNr_0",
+      "sharegpt_ab6IEma_0",
+      "ultrachat_268434"
+    ]
+  },
+  {
+    "question_id": "32260d93",
+    "question_type": "single-session-preference",
+    "question": "Can you recommend a show or movie for me to watch tonight?",
+    "answer": "The user would prefer recommendations for stand-up comedy specials on Netflix, especially those that are known for their storytelling. They may not prefer recommendations for other genres or platforms.",
+    "gold_sessions": [
+      "answer_0250ae1c"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "dense",
+      "hybrid",
+      "summary_first"
+    ],
+    "missed_top_sessions": [
+      "04bef53b",
+      "259d58da_2",
+      "35c5419d_abs_2",
+      "573dc24b_1",
+      "sharegpt_FbRVgO3_39",
+      "sharegpt_H4jw5s7_39",
+      "sharegpt_k31ZA2H_0",
+      "ultrachat_26485"
+    ]
+  },
+  {
+    "question_id": "32260d93",
+    "question_type": "single-session-preference",
+    "question": "Can you recommend a show or movie for me to watch tonight?",
+    "answer": "The user would prefer recommendations for stand-up comedy specials on Netflix, especially those that are known for their storytelling. They may not prefer recommendations for other genres or platforms.",
+    "gold_sessions": [
+      "answer_0250ae1c"
+    ],
+    "missed_by": "bounded",
+    "found_by": [
+      "dense",
+      "hybrid",
+      "summary_first"
+    ],
+    "missed_top_sessions": [
+      "04bef53b",
+      "1b26bdd5_5",
+      "573dc24b_1",
+      "60ff3a8c",
+      "d6bbe94d_3",
+      "ultrachat_151060",
+      "ultrachat_26485",
+      "ultrachat_507667"
+    ]
+  },
+  {
+    "question_id": "195a1a1b",
+    "question_type": "single-session-preference",
+    "question": "Can you suggest some activities that I can do in the evening?",
+    "answer": "The user would prefer suggestions that involve relaxing activities that can be done in the evening, preferably before 9:30 pm. They would not prefer suggestions that involve using their phone or watching TV, as these activities have been affecting their sleep quality.",
+    "gold_sessions": [
+      "answer_6dc4305e"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "87fff4b4_1",
+      "9b90460f_3",
+      "9f12daa1_1",
+      "ed9dad6c_2",
+      "ultrachat_461016"
+    ]
+  },
+  {
+    "question_id": "06f04340",
+    "question_type": "single-session-preference",
+    "question": "What should I serve for dinner this weekend with my homegrown ingredients?",
+    "answer": "The user would prefer dinner suggestions that incorporate their homegrown cherry tomatoes and herbs like basil and mint, highlighting recipes that showcase their garden produce. They might not prefer suggestions that do not utilize these specific ingredients or do not emphasize the use of homegrown elements.",
+    "gold_sessions": [
+      "answer_92d5f7cd"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "6e6fbb6b",
+      "7153284a_2",
+      "91223fd5_1",
+      "b459f888_3",
+      "sharegpt_h4ZC1fl_203",
+      "sharegpt_wNKWso6_0"
+    ]
+  },
+  {
+    "question_id": "06f04340",
+    "question_type": "single-session-preference",
+    "question": "What should I serve for dinner this weekend with my homegrown ingredients?",
+    "answer": "The user would prefer dinner suggestions that incorporate their homegrown cherry tomatoes and herbs like basil and mint, highlighting recipes that showcase their garden produce. They might not prefer suggestions that do not utilize these specific ingredients or do not emphasize the use of homegrown elements.",
+    "gold_sessions": [
+      "answer_92d5f7cd"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "6e6fbb6b",
+      "91223fd5_1",
+      "de1f4aec_2"
+    ]
+  },
+  {
+    "question_id": "09d032c9",
+    "question_type": "single-session-preference",
+    "question": "I've been having trouble with the battery life on my phone lately. Any tips?",
+    "answer": "The user would prefer responses that build upon their previous mention of purchasing a portable power bank, such as suggestions on how to optimize its use, like ensuring it's fully charged before use. They might also appreciate tips on utilizing battery-saving features on their phone. The user may not prefer responses that suggest alternative solutions or unrelated advice.",
+    "gold_sessions": [
+      "answer_b10dce5e"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "26d9aaaf",
+      "2a17ea02_1",
+      "3fc2244f",
+      "612e23f1",
+      "87e8ec02",
+      "9d1999d7_1",
+      "af631aa3_2",
+      "b21bd3e2",
+      "c7f7949e_3",
+      "d3971322_1",
+      "ef9ec0bc_1",
+      "sharegpt_e9sAtcZ_63",
+      "ultrachat_33949"
+    ]
+  },
+  {
+    "question_id": "09d032c9",
+    "question_type": "single-session-preference",
+    "question": "I've been having trouble with the battery life on my phone lately. Any tips?",
+    "answer": "The user would prefer responses that build upon their previous mention of purchasing a portable power bank, such as suggestions on how to optimize its use, like ensuring it's fully charged before use. They might also appreciate tips on utilizing battery-saving features on their phone. The user may not prefer responses that suggest alternative solutions or unrelated advice.",
+    "gold_sessions": [
+      "answer_b10dce5e"
+    ],
+    "missed_by": "bounded",
+    "found_by": [
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "21ef2d05_1",
+      "46bab85b",
+      "af631aa3_2",
+      "b21bd3e2",
+      "ef9ec0bc_1"
+    ]
+  },
+  {
+    "question_id": "09d032c9",
+    "question_type": "single-session-preference",
+    "question": "I've been having trouble with the battery life on my phone lately. Any tips?",
+    "answer": "The user would prefer responses that build upon their previous mention of purchasing a portable power bank, such as suggestions on how to optimize its use, like ensuring it's fully charged before use. They might also appreciate tips on utilizing battery-saving features on their phone. The user may not prefer responses that suggest alternative solutions or unrelated advice.",
+    "gold_sessions": [
+      "answer_b10dce5e"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "46bab85b",
+      "612e23f1",
+      "b21bd3e2",
+      "e8bfacec_2",
+      "ef9ec0bc_1"
+    ]
+  },
+  {
+    "question_id": "38146c39",
+    "question_type": "single-session-preference",
+    "question": "I've been feeling like my chocolate chip cookies need something extra. Any advice?",
+    "answer": "The user would prefer responses that build upon their previous experimentation with turbinado sugar, suggesting ingredients or techniques that complement its richer flavor. They might not prefer generic cookie-making advice or suggestions that don't take into account their existing use of turbinado sugar.",
+    "gold_sessions": [
+      "answer_772472c8"
+    ],
+    "missed_by": "bounded",
+    "found_by": [
+      "bm25",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "2ed8bd4a_2",
+      "467db12a",
+      "5806662d_1",
+      "87aaee77",
+      "909d57ca_2",
+      "e5b1bc37"
+    ]
+  },
+  {
+    "question_id": "38146c39",
+    "question_type": "single-session-preference",
+    "question": "I've been feeling like my chocolate chip cookies need something extra. Any advice?",
+    "answer": "The user would prefer responses that build upon their previous experimentation with turbinado sugar, suggesting ingredients or techniques that complement its richer flavor. They might not prefer generic cookie-making advice or suggestions that don't take into account their existing use of turbinado sugar.",
+    "gold_sessions": [
+      "answer_772472c8"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "15ed03f0_1",
+      "4fd6129f_1",
+      "87aaee77",
+      "909d57ca_2",
+      "e5b1bc37"
+    ]
+  },
+  {
+    "question_id": "57f827a0",
+    "question_type": "single-session-preference",
+    "question": "I was thinking about rearranging the furniture in my bedroom this weekend. Any tips?",
+    "answer": "The user would prefer responses that take into account their existing plans to replace the bedroom dresser and their interest in mid-century modern style, suggesting furniture layouts that accommodate the new dresser and incorporate elements of this design aesthetic. They might not prefer general furniture arrangement tips or suggestions that do not consider their specific design preferences.",
+    "gold_sessions": [
+      "answer_1bde8d3b"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "bounded",
+      "dense",
+      "hybrid",
+      "summary_first"
+    ],
+    "missed_top_sessions": [
+      "1bff1675",
+      "2ef55f49_1",
+      "5150a4e9_2",
+      "60e8941a_abs_1",
+      "6e110a53_1",
+      "c8a64300",
+      "d05d6391_1",
+      "d0f42e3f",
+      "e85e0eaf_1",
+      "f1dd798a_1",
+      "ultrachat_142447"
+    ]
+  },
+  {
+    "question_id": "95228167",
+    "question_type": "single-session-preference",
+    "question": "I'm getting excited about my visit to the music store this weekend. Any tips on what to look for in a new guitar?",
+    "answer": "The user would prefer responses that highlight the differences between Fender Stratocaster and Gibson Les Paul electric guitars, such as the feel of the neck, weight, and sound profile. They might not prefer general tips on buying an electric guitar or suggestions that do not take into account their current guitar and desired upgrade.",
+    "gold_sessions": [
+      "answer_5e613445"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "dense",
+      "hybrid",
+      "summary_first"
+    ],
+    "missed_top_sessions": [
+      "3d2e66f2_2",
+      "8199fb3a_4",
+      "b916da64_2",
+      "sharegpt_1hqnE9g_0"
+    ]
+  },
+  {
+    "question_id": "95228167",
+    "question_type": "single-session-preference",
+    "question": "I'm getting excited about my visit to the music store this weekend. Any tips on what to look for in a new guitar?",
+    "answer": "The user would prefer responses that highlight the differences between Fender Stratocaster and Gibson Les Paul electric guitars, such as the feel of the neck, weight, and sound profile. They might not prefer general tips on buying an electric guitar or suggestions that do not take into account their current guitar and desired upgrade.",
+    "gold_sessions": [
+      "answer_5e613445"
+    ],
+    "missed_by": "bounded",
+    "found_by": [
+      "dense",
+      "hybrid",
+      "summary_first"
+    ],
+    "missed_top_sessions": [
+      "084802f9_2",
+      "57d6e39b_2",
+      "7e17ae56_3",
+      "aec83540_1",
+      "b916da64_2",
+      "c34b6a1c_1",
+      "ultrachat_392716"
+    ]
+  },
+  {
+    "question_id": "75f70248",
+    "question_type": "single-session-preference",
+    "question": "I've been sneezing quite a bit lately. Do you think it might be my living room?",
+    "answer": "The user would prefer responses that consider the potential impact of their cat, Luna, and her shedding on their sneezing, as well as the recent deep clean of the living room and its possible effect on stirring up dust. They might not prefer responses that fail to take into account these specific details previously mentioned, such as generic suggestions or unrelated factors.",
+    "gold_sessions": [
+      "answer_8ee04a2e"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "15e366a1_1",
+      "2d74df23_4",
+      "75671e3f_1",
+      "adb1f904",
+      "c3437f49"
+    ]
+  },
+  {
+    "question_id": "d6233ab6",
+    "question_type": "single-session-preference",
+    "question": "I've been feeling nostalgic lately. Do you think it would be a good idea to attend my high school reunion?",
+    "answer": "The user would prefer responses that draw upon their personal experiences and memories, specifically their positive high school experiences such as being part of the debate team and taking advanced placement courses. They would prefer suggestions that highlight the potential benefits of attending the reunion, such as reconnecting with old friends and revisiting favorite subjects like history and economics. The user might not prefer generic or vague responses that do not take into account their individual experiences and interests.",
+    "gold_sessions": [
+      "answer_b0fac439"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "dense"
+    ],
+    "missed_top_sessions": [
+      "0e726047",
+      "87cfeb28_2",
+      "d850eba6_2",
+      "ebb84f5b",
+      "ecfd2047_1",
+      "ultrachat_125013"
+    ]
+  },
+  {
+    "question_id": "d6233ab6",
+    "question_type": "single-session-preference",
+    "question": "I've been feeling nostalgic lately. Do you think it would be a good idea to attend my high school reunion?",
+    "answer": "The user would prefer responses that draw upon their personal experiences and memories, specifically their positive high school experiences such as being part of the debate team and taking advanced placement courses. They would prefer suggestions that highlight the potential benefits of attending the reunion, such as reconnecting with old friends and revisiting favorite subjects like history and economics. The user might not prefer generic or vague responses that do not take into account their individual experiences and interests.",
+    "gold_sessions": [
+      "answer_b0fac439"
+    ],
+    "missed_by": "bounded",
+    "found_by": [
+      "dense"
+    ],
+    "missed_top_sessions": [
+      "0e726047",
+      "32f28c7b_1",
+      "94bc18df_3",
+      "ultrachat_125013"
+    ]
+  },
+  {
+    "question_id": "d6233ab6",
+    "question_type": "single-session-preference",
+    "question": "I've been feeling nostalgic lately. Do you think it would be a good idea to attend my high school reunion?",
+    "answer": "The user would prefer responses that draw upon their personal experiences and memories, specifically their positive high school experiences such as being part of the debate team and taking advanced placement courses. They would prefer suggestions that highlight the potential benefits of attending the reunion, such as reconnecting with old friends and revisiting favorite subjects like history and economics. The user might not prefer generic or vague responses that do not take into account their individual experiences and interests.",
+    "gold_sessions": [
+      "answer_b0fac439"
+    ],
+    "missed_by": "hybrid",
+    "found_by": [
+      "dense"
+    ],
+    "missed_top_sessions": [
+      "0e726047",
+      "32f28c7b_1",
+      "87cfeb28_2",
+      "94bc18df_3",
+      "c927ffbb",
+      "cb05ed10",
+      "d850eba6_2",
+      "e6c3a50a",
+      "ecfd2047_1",
+      "f916c63a_2",
+      "ultrachat_125013",
+      "ultrachat_329160"
+    ]
+  },
+  {
+    "question_id": "d6233ab6",
+    "question_type": "single-session-preference",
+    "question": "I've been feeling nostalgic lately. Do you think it would be a good idea to attend my high school reunion?",
+    "answer": "The user would prefer responses that draw upon their personal experiences and memories, specifically their positive high school experiences such as being part of the debate team and taking advanced placement courses. They would prefer suggestions that highlight the potential benefits of attending the reunion, such as reconnecting with old friends and revisiting favorite subjects like history and economics. The user might not prefer generic or vague responses that do not take into account their individual experiences and interests.",
+    "gold_sessions": [
+      "answer_b0fac439"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "dense"
+    ],
+    "missed_top_sessions": [
+      "0e726047",
+      "32f28c7b_1",
+      "87cfeb28_2",
+      "94bc18df_3",
+      "e419b7c3_4"
+    ]
+  },
+  {
+    "question_id": "07b6f563",
+    "question_type": "single-session-preference",
+    "question": "Can you suggest some useful accessories for my phone?",
+    "answer": "The user would prefer suggestions of accessories that are compatible with an iPhone 13 Pro, such as high-quality screen protectors, durable cases, portable power banks, or phone wallet cases. They may not prefer suggestions of accessories that are not compatible with Apple products or do not enhance the functionality or protection of their phone.",
+    "gold_sessions": [
+      "answer_d03098f9"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "0ac1a6f9_2",
+      "39358a85_2",
+      "55c267aa",
+      "66ab6260"
+    ]
+  },
+  {
+    "question_id": "1c0ddc50",
+    "question_type": "single-session-preference",
+    "question": "Can you suggest some activities I can do during my commute to work?",
+    "answer": "The user would prefer suggestions related to listening to new podcasts or audiobooks, especially the genre beyond true crime or self-improvement, such as history. They may not be interested in activities that require visual attention, such as reading or watching videos, as they are commuting. The user would not prefer general podcast topics such as true crime or self-improvement, as the user wants to explore other topics.",
+    "gold_sessions": [
+      "answer_8da8c7e0"
+    ],
+    "missed_by": "bounded",
+    "found_by": [
+      "bm25",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "0a7d5bf6_2",
+      "2aa70c9c_1",
+      "99883f38_1",
+      "a0aa5035",
+      "b33e89b5_1"
+    ]
+  },
+  {
+    "question_id": "1c0ddc50",
+    "question_type": "single-session-preference",
+    "question": "Can you suggest some activities I can do during my commute to work?",
+    "answer": "The user would prefer suggestions related to listening to new podcasts or audiobooks, especially the genre beyond true crime or self-improvement, such as history. They may not be interested in activities that require visual attention, such as reading or watching videos, as they are commuting. The user would not prefer general podcast topics such as true crime or self-improvement, as the user wants to explore other topics.",
+    "gold_sessions": [
+      "answer_8da8c7e0"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "2aa70c9c_1",
+      "99883f38_1",
+      "b33e89b5_1",
+      "c7ca6dff",
+      "ultrachat_494933"
+    ]
+  },
+  {
+    "question_id": "c18a7dc8",
+    "question_type": "multi-session",
+    "question": "How many years older am I than when I graduated from college?",
+    "answer": "7",
+    "gold_sessions": [
+      "answer_2e2085fa_2",
+      "answer_2e2085fa_1"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "5022812c",
+      "57d6e39b_1",
+      "9d5a389d",
+      "f6ebc377",
+      "sharegpt_YPC6Oll_18",
+      "ultrachat_353377",
+      "ultrachat_463016"
+    ]
+  },
+  {
+    "question_id": "c18a7dc8",
+    "question_type": "multi-session",
+    "question": "How many years older am I than when I graduated from college?",
+    "answer": "7",
+    "gold_sessions": [
+      "answer_2e2085fa_2",
+      "answer_2e2085fa_1"
+    ],
+    "missed_by": "bounded",
+    "found_by": [
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "4ea4f02f_1",
+      "5022812c",
+      "81b971b8_2",
+      "9d5a389d",
+      "d7f9742a_1",
+      "f716720c_3"
+    ]
+  },
+  {
+    "question_id": "gpt4_468eb063",
+    "question_type": "temporal-reasoning",
+    "question": "How many days ago did I meet Emma?",
+    "answer": "9 days ago. 10 days (including the last day) is also acceptable.",
+    "gold_sessions": [
+      "answer_9b09d95b_1"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "47183c60_5",
+      "e60a93ff_2"
+    ]
+  },
+  {
+    "question_id": "gpt4_e061b84f",
+    "question_type": "temporal-reasoning",
+    "question": "What is the order of the three sports events I participated in during the past month, from earliest to latest?",
+    "answer": "I first completed the Spring Sprint Triathlon, then took part in the Midsummer 5K Run, and finally participated in the company's annual charity soccer tournament.",
+    "gold_sessions": [
+      "answer_8c64ce25_2",
+      "answer_8c64ce25_1",
+      "answer_8c64ce25_3"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "0a6bf5e4_1",
+      "1446b088_2",
+      "539c2346_3",
+      "9345f7dc_4",
+      "ultrachat_129606",
+      "ultrachat_436674"
+    ]
+  },
+  {
+    "question_id": "gpt4_21adecb5",
+    "question_type": "temporal-reasoning",
+    "question": "How many months passed between the completion of my undergraduate degree and the submission of my master's thesis?",
+    "answer": "6 months",
+    "gold_sessions": [
+      "answer_1e2369c9_1",
+      "answer_1e2369c9_2"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25"
+    ],
+    "missed_top_sessions": [
+      "e1f37e24",
+      "sharegpt_ipLglky_42"
+    ]
+  },
+  {
+    "question_id": "gpt4_e061b84g",
+    "question_type": "temporal-reasoning",
+    "question": "I mentioned participating in a sports event two weeks ago. What was the event?",
+    "answer": "The company's annual charity soccer tournament.",
+    "gold_sessions": [
+      "answer_8c64ce26_2",
+      "answer_8c64ce26_1",
+      "answer_8c64ce26_3"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "dense"
+    ],
+    "missed_top_sessions": [
+      "3929e6cc_1",
+      "68705467_1",
+      "9dac9e37_1",
+      "ae15e8b6_1"
+    ]
+  },
+  {
+    "question_id": "gpt4_e061b84g",
+    "question_type": "temporal-reasoning",
+    "question": "I mentioned participating in a sports event two weeks ago. What was the event?",
+    "answer": "The company's annual charity soccer tournament.",
+    "gold_sessions": [
+      "answer_8c64ce26_2",
+      "answer_8c64ce26_1",
+      "answer_8c64ce26_3"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "dense"
+    ],
+    "missed_top_sessions": [
+      "3929e6cc_1",
+      "68705467_1",
+      "9dac9e37_1",
+      "sharegpt_cUXo8S0_0",
+      "sharegpt_i33zh1e_15"
+    ]
+  },
+  {
+    "question_id": "71017277",
+    "question_type": "temporal-reasoning",
+    "question": "I received a piece of jewelry last Saturday from whom?",
+    "answer": "my aunt",
+    "gold_sessions": [
+      "answer_0b4a8adc_1"
+    ],
+    "missed_by": "bounded",
+    "found_by": [
+      "bm25",
+      "dense",
+      "hybrid",
+      "summary_first"
+    ],
+    "missed_top_sessions": [
+      "6de70f46_2",
+      "85a1be56_2",
+      "e5b86922_1",
+      "fd749c9a_1",
+      "ultrachat_557308"
+    ]
+  },
+  {
+    "question_id": "gpt4_59149c78",
+    "question_type": "temporal-reasoning",
+    "question": "I mentioned that I participated in an art-related event two weeks ago. Where was that event held at?",
+    "answer": "The Metropolitan Museum of Art.",
+    "gold_sessions": [
+      "answer_d00ba6d1_1",
+      "answer_d00ba6d1_2"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "23754665",
+      "765ce8a7_2",
+      "a8ac3d1d_1",
+      "ultrachat_131385",
+      "ultrachat_511575"
+    ]
+  },
+  {
+    "question_id": "gpt4_4929293b",
+    "question_type": "temporal-reasoning",
+    "question": "What was the the life event of one of my relatives that I participated in a week ago?",
+    "answer": "my cousin's wedding",
+    "gold_sessions": [
+      "answer_add9b013_2",
+      "answer_add9b013_1"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "dense"
+    ],
+    "missed_top_sessions": [
+      "cc8252e8",
+      "sharegpt_KFhIUCO_0",
+      "sharegpt_rqvR1Ep_0"
+    ]
+  },
+  {
+    "question_id": "gpt4_468eb064",
+    "question_type": "temporal-reasoning",
+    "question": "Who did I meet with during the lunch last Tuesday?",
+    "answer": "Emma",
+    "gold_sessions": [
+      "answer_9b09d95b_1"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "sharegpt_wrwD6bG_0"
+    ]
+  },
+  {
+    "question_id": "9a707b82",
+    "question_type": "temporal-reasoning",
+    "question": "I mentioned cooking something for my friend a couple of days ago. What was it?",
+    "answer": "a chocolate cake",
+    "gold_sessions": [
+      "answer_dba89488_2",
+      "answer_dba89488_1"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bounded",
+      "dense"
+    ],
+    "missed_top_sessions": [
+      "7a4d00b3_2",
+      "8e78fa70_1",
+      "990f3ef9_2",
+      "e72739cd_1",
+      "ultrachat_466884"
+    ]
+  },
+  {
+    "question_id": "6e984302",
+    "question_type": "temporal-reasoning",
+    "question": "I mentioned an investment for a competition four weeks ago? What did I buy?",
+    "answer": "I got my own set of sculpting tools.",
+    "gold_sessions": [
+      "answer_88841f27_1",
+      "answer_88841f27_2"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "3535dbf0_4",
+      "6efebca9",
+      "7285299a_8",
+      "96c743d0_2",
+      "c03fc56c_1"
+    ]
+  },
+  {
+    "question_id": "gpt4_8279ba03",
+    "question_type": "temporal-reasoning",
+    "question": "What kitchen appliance did I buy 10 days ago?",
+    "answer": "a smoker",
+    "gold_sessions": [
+      "answer_56521e66_1"
+    ],
+    "missed_by": "bm25",
+    "found_by": [
+      "dense"
+    ],
+    "missed_top_sessions": [
+      "2ef55f49_3",
+      "50d66391_4",
+      "518d26d3_4",
+      "570fe405",
+      "606d0c4a_2",
+      "652c0717_3",
+      "864a563d_5",
+      "b357fb8b_2",
+      "d1a1b9ea_1",
+      "dea400f8_2"
+    ]
+  },
+  {
+    "question_id": "gpt4_8279ba03",
+    "question_type": "temporal-reasoning",
+    "question": "What kitchen appliance did I buy 10 days ago?",
+    "answer": "a smoker",
+    "gold_sessions": [
+      "answer_56521e66_1"
+    ],
+    "missed_by": "bounded",
+    "found_by": [
+      "dense"
+    ],
+    "missed_top_sessions": [
+      "50d66391_4",
+      "518d26d3_4",
+      "570fe405",
+      "b357fb8b_2",
+      "d1a1b9ea_1"
+    ]
+  },
+  {
+    "question_id": "gpt4_8279ba03",
+    "question_type": "temporal-reasoning",
+    "question": "What kitchen appliance did I buy 10 days ago?",
+    "answer": "a smoker",
+    "gold_sessions": [
+      "answer_56521e66_1"
+    ],
+    "missed_by": "hybrid",
+    "found_by": [
+      "dense"
+    ],
+    "missed_top_sessions": [
+      "2ef55f49_3",
+      "49b78a55_1",
+      "50d66391_4",
+      "518d26d3_4",
+      "570fe405",
+      "89749c78_2",
+      "b357fb8b_2",
+      "bb107057_2",
+      "d1a1b9ea_1",
+      "dea400f8_2",
+      "ultrachat_129760",
+      "ultrachat_526748"
+    ]
+  },
+  {
+    "question_id": "gpt4_8279ba03",
+    "question_type": "temporal-reasoning",
+    "question": "What kitchen appliance did I buy 10 days ago?",
+    "answer": "a smoker",
+    "gold_sessions": [
+      "answer_56521e66_1"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "dense"
+    ],
+    "missed_top_sessions": [
+      "50d66391_4",
+      "518d26d3_4",
+      "570fe405",
+      "89749c78_2",
+      "d1a1b9ea_1"
+    ]
+  },
+  {
+    "question_id": "08e075c7",
+    "question_type": "knowledge-update",
+    "question": "How long have I been using my Fitbit Charge 3?",
+    "answer": "9 months",
+    "gold_sessions": [
+      "answer_cdbe2250_1",
+      "answer_cdbe2250_2"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "25b3e36c_1",
+      "385683f0_1",
+      "ae77c245",
+      "ultrachat_265107"
+    ]
+  },
+  {
+    "question_id": "2133c1b5",
+    "question_type": "knowledge-update",
+    "question": "How long have I been living in my current apartment in Harajuku?",
+    "answer": "3 months",
+    "gold_sessions": [
+      "answer_52382508_1",
+      "answer_52382508_2"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "1126be1e_2",
+      "1a9f5723_7",
+      "8ca0085a_1",
+      "b829045b",
+      "sharegpt_oTnUt5N_15"
+    ]
+  },
+  {
+    "question_id": "1568498a",
+    "question_type": "single-session-assistant",
+    "question": "I'm looking back at our previous chess game and I was wondering, what was the move you made after 27. Kg2 Bd5+?",
+    "answer": "28. Kg3",
+    "gold_sessions": [
+      "answer_sharegpt_d6JJiqH_76"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "1446e268_1",
+      "70fed904",
+      "804a55d2_2",
+      "sharegpt_h87NLyS_49"
+    ]
+  },
+  {
+    "question_id": "6222b6eb",
+    "question_type": "single-session-assistant",
+    "question": "I was going through our previous conversation about atmospheric correction methods, and I wanted to confirm - you mentioned that 6S, MAJA, and Sen2Cor are all algorithms for atmospheric correction of remote sensing images. Can you remind me which one is implemented in the SIAC_GEE tool?",
+    "answer": "The 6S algorithm is implemented in the SIAC_GEE tool.",
+    "gold_sessions": [
+      "answer_sharegpt_H9PiM5G_0"
+    ],
+    "missed_by": "summary_first",
+    "found_by": [
+      "bm25",
+      "bounded",
+      "dense",
+      "hybrid"
+    ],
+    "missed_top_sessions": [
+      "0254514e_2",
+      "04a0b385",
+      "53c4fdd7_1",
+      "544c1e7b"
+    ]
+  }
+]

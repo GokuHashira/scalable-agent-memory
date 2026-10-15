@@ -1,0 +1,26 @@
+.specify/
+spec-docs/
+code-docs/
+specs/
+# data / runs (large, regenerated; fixture stays trackable)
+data/raw/
+data/lme_s/
+data/*/index/
+runs/
+.cache/
+# python
+__pycache__/
+*.pyc
+.venv/
+dist/
+*.egg-info/
+.coverage
+.pytest_cache/
+.ruff_cache/
+# os / editors
+.DS_Store
+.vscode/
+.idea/
+logs/
+scripts/slurm/
+notes.txt
