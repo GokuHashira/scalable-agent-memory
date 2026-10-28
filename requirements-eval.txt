@@ -1,0 +1,9 @@
+# Extra dependencies for the data / evaluation code (src/mem27/data, src/mem27/eval, scripts/*).
+# Core deps (numpy, rank-bm25, faiss-cpu, tiktoken, pyyaml) come from pyproject.toml.
+openai>=1.40            # OpenAI-compatible client for the vLLM / llama.cpp reader and judge servers
+ijson>=3.2              # streaming the 2.7 GB LongMemEval_M file
+scikit-learn>=1.4       # leakage audit (TF-IDF + logistic regression)
+scipy>=1.11
+sentence-transformers>=3.0   # bge-base-en-v1.5 embeddings for the reference dense / hybrid retrievers
+pytest>=8.0
+# Serving (cluster only): vllm==0.11.0 (GPU) or llama.cpp built from source (CPU); see scripts/slurm/.

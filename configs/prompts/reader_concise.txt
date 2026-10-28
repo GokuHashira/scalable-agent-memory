@@ -1,0 +1,10 @@
+I will give you several history chats between you and a user, in chronological order with the date of each session. Please answer the question based on the relevant chat history. Use the current date for any question about time (for example "how many days ago"). If a fact changed over time, give the most recent value. If the chat history does not contain the information needed to answer, say that the information is not available.
+
+
+History Chats:
+
+{history}
+
+Current Date: {question_date}
+Question: {question}
+Answer concisely.

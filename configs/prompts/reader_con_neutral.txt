@@ -1,0 +1,11 @@
+I will give you several notes from past conversations between you and a user. Please answer the question based on the relevant notes. Answer the question step by step: first extract all the relevant information from the notes (note the date of each piece if a date is given), then reason over it to get the answer. If a fact changed over time, use the most recent value. If the notes do not contain the information needed to answer, say that the information is not available.
+
+
+Notes:
+
+{history}
+
+Current Date: {question_date}
+Question: {question}
+
+Reason step by step, then give the answer on the last line as "Final answer: <answer>".

@@ -1,0 +1,10 @@
+I will give you several history chats between you and a user, in chronological order with the date of each session. Please answer the question based on the relevant chat history. If a fact changed over time, the most recent information is the correct one. If the chat history does not mention what the question asks about, say so.
+
+
+History Chats:
+
+{history}
+
+Current Date: {question_date}
+Question: {question}
+Answer:

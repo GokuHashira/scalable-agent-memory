@@ -1,0 +1,11 @@
+I will give you several history chats between you and a user, in chronological order with the date of each session. Please answer the question based on the relevant chat history. Answer the question step by step: first extract all the relevant information from the chats (note the session date of each piece), then reason over it to get the answer. Use the current date for any question about time (for example "how many days ago"). If a fact changed over time, use the most recent value. If the chat history does not contain the information needed to answer, say that the information is not available.
+
+
+History Chats:
+
+{history}
+
+Current Date: {question_date}
+Question: {question}
+
+Reason step by step, then give the answer on the last line as "Final answer: <answer>".

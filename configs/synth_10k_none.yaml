@@ -1,0 +1,19 @@
+# DATA-02 synthetic workload, 10K notes (seed-deterministic). See mem27/data/synth.py for semantics.
+name: synth_10k_none
+n_notes: 10000
+seed: 0
+update_rate: none        # none | low | medium | high  (mean value changes per mutable timeline: 0 / .25 / .8 / 2.0)
+start: "2024-01-01"
+days: 365
+base_frac: 0.5             # notes before this point of the timeline -> notes.jsonl; the rest -> updates.jsonl
+filler_frac: 0.3           # random filler notes (no entities)
+twin_frac: 0.25            # persons with a near-duplicate-name twin (near_dup distractor tier)
+explicit_frac: 0.5         # share of supersessions/corrections stated explicitly ("changed from A to B")
+correct_frac: 0.2          # share of value changes that are corrections (earlier statement wrong) vs supersessions
+restate_rate: 0.4          # mean restatements per version (paraphrase tier)
+n_questions: 600           # static end-of-stream set, 100 per query type, 20% dev
+dev_frac: 0.2
+mix: {exact_lookup: 1, semantic_recall: 1, latest_value: 1, point_in_time: 1, what_changed: 1, multi_hop: 1}
+n_stream_questions: 400    # spread over the update stream; mix shifts at the midpoint
+stream_mix_before: {latest_value: 0.7, point_in_time: 0.3}
+stream_mix_after: {latest_value: 0.3, point_in_time: 0.7}

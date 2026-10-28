@@ -1,0 +1,9 @@
+Below are two messages a user wrote to an assistant at different times. The later message updates a fact from the earlier one.
+
+Earlier message ({old_date}):
+{old}
+
+Later message ({new_date}):
+{new}
+
+Does the later message explicitly signal that something changed or refer back to the earlier state (for example "I switched from ...", "no longer", "I used to", "now I have ... instead"), rather than simply stating the new information on its own? Answer yes or no only.

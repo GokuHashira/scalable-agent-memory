@@ -1,0 +1,13 @@
+I will give you a question about a fact that changed over time, the outdated information, the updated information, and a response from a model. Please answer yes if the response gives the outdated information as its answer (it relies on the old value and does not give the updated value as the answer). Answer no if the response gives the updated information, gives no answer, or mentions the old value only as history while answering with the updated one.
+
+Question: {question}
+
+Outdated information: {old}
+
+Updated information: {new}
+
+Correct (updated) answer: {answer}
+
+Model Response: {response}
+
+Does the response give the outdated information as its answer? Answer yes or no only.
