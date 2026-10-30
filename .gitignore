@@ -1,0 +1,25 @@
+# environments / caches (never commit)
+.venv/
+.venv_vllm/
+.venv_graphiti/
+.venv_allmem/
+.uv_cache/
+.cache/
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# data, embeddings, raw corpora
+data/
+runs/
+logs/
+
+# generated / docs (excluded per request)
+*.md
+docs/
+MANIFEST.sha256
+sbatch_err.txt
+*.log
+
+# claude code traces
+.claude/
