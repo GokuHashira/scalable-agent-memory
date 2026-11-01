@@ -1,6 +1,6 @@
 .PHONY: fixture test check coverage baseline reproduce
 
-DS ?= lme_s
+DS ?= lme_s_raw
 PY := uv run python
 CONFIG := configs/retrieval.yaml
 

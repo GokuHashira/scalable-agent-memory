@@ -88,7 +88,7 @@ result ids, order and scores). Fixture tests confirm the same for every method, 
 ## Reproduce
 
 ```bash
-uv run python scripts/evaluate.py --runs 'runs/*-lme_s-seed0-warm' --questions data/lme_s/questions.jsonl
-uv run python scripts/profile_indexes.py --dataset data/lme_s
-uv run python scripts/failure_traces.py --runs runs/*-lme_s-seed0-warm --questions data/lme_s/questions.jsonl
+uv run python scripts/evaluate.py --runs 'runs/*-lme_s_raw-seed0-warm' --questions data/lme_s_raw/questions.jsonl
+uv run python scripts/profile_indexes.py --dataset data/lme_s_raw
+uv run python scripts/failure_traces.py --runs runs/*-lme_s_raw-seed0-warm --questions data/lme_s_raw/questions.jsonl
 ```

@@ -28,4 +28,4 @@ def test_unknown_plan_is_rejected_with_choices():
 
 
 def test_run_dir_uses_descriptive_name():
-    assert default_run_dir("p2", Path("data/lme_s"), 0, "warm") == Path("runs/hybrid-lme_s-seed0-warm")
+    assert default_run_dir("p2", Path("data/lme_s_raw"), 0, "warm") == Path("runs/hybrid-lme_s_raw-seed0-warm")

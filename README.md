@@ -16,8 +16,8 @@ uv sync --extra encode     # cluster: adds sentence-transformers / torch for rea
 |---|---|---|
 | `make fixture` | laptop | build the 5,500-note deterministic fixture in `data/fixture/` |
 | `make check` | laptop | ruff format check, ruff lint, ty, pytest |
-| `make baseline DS=lme_s` | Zaratan | build indexes, run all six plans, evaluate |
-| `make reproduce DS=lme_s` | anywhere | rebuild the tables in `docs/midterm/` from `runs/` |
+| `make baseline DS=lme_s_raw` | Zaratan | build indexes, run all six plans, evaluate |
+| `make reproduce DS=lme_s_raw` | anywhere | rebuild the tables in `docs/midterm/` from `runs/` |
 
 ## Layout
 

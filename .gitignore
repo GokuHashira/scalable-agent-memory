@@ -5,6 +5,7 @@ specs/
 # data / runs (large, regenerated; fixture stays trackable)
 data/raw/
 data/lme_s/
+data/lme_s_raw/
 data/*/index/
 runs/
 .cache/

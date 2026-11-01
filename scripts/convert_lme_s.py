@@ -9,7 +9,7 @@ from mem27.retrieval.longmemeval import ConversionError, convert_lme_s
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--raw", default="data/raw/longmemeval/longmemeval_s_cleaned.json")
-    parser.add_argument("--out", default="data/lme_s")
+    parser.add_argument("--out", default="data/lme_s_raw")
     parser.add_argument("--parent-tokens", type=int, default=64)
     args = parser.parse_args(argv)
     try:
