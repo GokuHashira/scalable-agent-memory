@@ -6,6 +6,7 @@ specs/
 data/raw/
 data/lme_s/
 data/lme_s_raw/
+data/lme_s_k/
 data/*/index/
 runs/
 .cache/
@@ -13,6 +14,10 @@ runs/
 __pycache__/
 *.pyc
 .venv/
+.venv_vllm/
+.venv_graphiti/
+.venv_allmem/
+.uv_cache/
 dist/
 *.egg-info/
 .coverage
@@ -23,5 +28,8 @@ dist/
 .vscode/
 .idea/
 logs/
+*.log
+sbatch_err.txt
+MANIFEST.sha256
 scripts/slurm/
 notes.txt

@@ -1,0 +1,4 @@
+# Reader/serving stack — separate venv .venv_vllm (planner §5)
+vllm==0.6.3.post1
+transformers==4.45.2
+setuptools>=70
